@@ -1,5 +1,5 @@
 class Main {
-  public static void main(String[] args) throws Exception {
-    Gauss.test();
-  }
+    public static void main(String[] args) throws Exception {
+        Gauss.test();
+    }
 }
