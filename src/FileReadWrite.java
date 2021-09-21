@@ -1,16 +1,14 @@
 import java.io.*;
 import java.util.*;
 
-class FileReadWrite {
-  int rows, cols, fileName;
-
+class FileReadWrite extends Utils {
   public static int[] calcRowsCols(String fileName) {
     FileReader fr=null;
     try {
       fr = new FileReader(fileName);
     }
     catch (FileNotFoundException fe) {
-      System.out.println("File not found");
+      println("File tidak ditemukan");
     }
     
     int rows=0, cols=0;
@@ -33,39 +31,32 @@ class FileReadWrite {
     rowsCols[1] = cols;
 
     return rowsCols;
-    // return realRead(rows,cols,fileName);
   }
   public static double[][] readFile(String fileName, int rows, int cols){
-    System.out.println("file: " + fileName);
+    double[][] mat = new double[rows][cols]; 
+    
+    println("Mencoba membaca file: " + fileName);
 
     FileReader fr=null;
     try {
       fr = new FileReader(fileName);
     }
     catch (FileNotFoundException fe) {
-      System.out.println("File not found");
+      println("File tidak ditemukan");
     }
-    double[][] mat = new double[rows][cols]; 
     Scanner rowScanner2 = new Scanner(fr);
 
     for (int i=0;i<rows;i++) {
       for (int j=0;j<cols;j++) {
-        try {
-          double input = rowScanner2.nextDouble();
-          mat[i][j] = input;
-        } catch (NoSuchElementException e) {
-          System.out.println("gagal, seharusnya memiliki elemen selanjutnya, tapi gagal terbaca");
-        }
+        double input = rowScanner2.nextDouble();
+        mat[i][j] = input;
       }
     }
     rowScanner2.close();
-
-    System.out.println(mat[0][0]);
-    // displayMat(mat,rows,cols);
     return mat;
   }
   
-  public static void writeFile(String path, double[][] mat) {
+  public static boolean writeFile(String path, double[][] mat) {
     try {
       FileWriter myWriter = new FileWriter(path);
       for (int i=0;i<mat.length;i++) {
@@ -77,27 +68,30 @@ class FileReadWrite {
       // Add End Of File (new line)
       myWriter.write("\n");
       myWriter.close();
-      System.out.println("Successfully wrote to " + path);
+      println("Berhasil menuliskan pada " + path);
+      return true;
     } catch (IOException e) {
-      System.out.println("An error occurred.");
-      e.printStackTrace();
+      println("Terjadi error.");
+      return false;
     }
   }
 
-  public static void displayMat(double[][] mat) {
-    for (int i = 0; i < mat.length; i++) {
-      for (int j = 0; j < mat[i].length; j++) {
-        System.out.print(mat[i][j]+" ");
+  // TESTER
+  public static void main(String[] args){
+    int[] rowsCols = calcRowsCols("test/test.txt");
+    double[][] mat = readFile("test/test.txt",rowsCols[0],rowsCols[1]);
+
+    displayMat(mat);
+
+    boolean success = false;
+    while (!success) {
+      success = writeFile("new/output.txt",mat);
+      if (success)
+        break;
+      else {
+        success = writeFile("test/lala.txt",mat);
       }
-      System.out.println();
     }
+    println("test");
   }
-
-  // public static void main(String[] args){
-  //   // this.mat = obj.readFile("test/" + inputName);
-  //   double[][] mat = {{1,2},{3,4}};
-
-  //   writeFile("test/output.txt",mat);
-  //   System.out.println("test");
-  // }
 }
