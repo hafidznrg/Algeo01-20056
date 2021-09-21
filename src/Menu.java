@@ -1,3 +1,5 @@
+import java.io.*;
+
 class Menu extends Utils {
   protected static void displayMainMenu() {
     println("Main Menu");
@@ -47,7 +49,7 @@ class Menu extends Utils {
     }
     return mat;
   }
-  
+
   private static double[][] inputMatrixKeyboard(boolean mustSquare) {
     int rows, cols;
     double[][] mat;
@@ -100,5 +102,23 @@ class Menu extends Utils {
     mat = FileReadWrite.readFile(fileName, rowsCols[0],rowsCols[1]);
 
     return mat;
+  }
+  private static String inputFileName() {
+    String fileName;
+    // To check whether the file is exist or not
+    FileReader fr=null;
+
+    println("Masukkan nama file");
+    print("> ");
+    fileName = sc.next();
+    try {
+      fr = new FileReader(fileName);
+    }
+    catch (FileNotFoundException fe) {
+      println("File tidak ditemukan.");
+      fileName = inputFileName();
+    }
+
+    return fileName;
   }
 }
