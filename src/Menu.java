@@ -47,4 +47,58 @@ class Menu extends Utils {
     }
     return mat;
   }
+  
+  private static double[][] inputMatrixKeyboard(boolean mustSquare) {
+    int rows, cols;
+    double[][] mat;
+
+    while (true) {
+      if (mustSquare) {
+        println("Masukkan ukuran matriks");
+        print("> ");
+        rows = sc.nextInt();
+        cols = rows;
+      } else {
+        println("Masukkan jumlah baris dan kolom matriks");
+        println("(Pisahkan dengan spasi)");
+        print("> ");
+        rows = sc.nextInt();
+        cols = sc.nextInt();
+      }
+      if (rows > 0 && cols > 0) {
+        break;
+      } else {
+        println("Masukan invalid. Jumlah baris dan kolom harus > 0");
+      }
+    }
+    mat = new double[rows][cols];
+    
+    println("Masukkan elemen matriks");
+    for (int i = 0; i < rows; i++) {
+      for (int j =0;j<cols; j++) {
+        print("Elemen baris ke-"+ (i+1) + " kolom ke-" + (j+1) +": ");
+        mat[i][j] = sc.nextDouble();
+      }
+    }
+
+    return mat;
+  }
+  private static double[][] inputMatrixFile(boolean mustSquare) {
+    String fileName;
+    int[] rowsCols;
+    double[][] mat;
+
+    while (true) {
+      fileName = inputFileName();
+      rowsCols = FileReadWrite.calcRowsCols(fileName);
+      if (mustSquare && (rowsCols[0] != rowsCols[1])){
+        println("Matriks dalam file tidak berbentuk persegi");
+      } else {
+        break;
+      }
+    }
+    mat = FileReadWrite.readFile(fileName, rowsCols[0],rowsCols[1]);
+
+    return mat;
+  }
 }
