@@ -1,20 +1,22 @@
 class Main extends Menu{
   public static void main(String[] args) {
-    boolean running = true;
+    boolean running;
+    boolean mustSquare;
     int choice;
     double[][] mat;
     // double[][] res;
 
+    running = true;
     while (running) {
       displayMainMenu();
       choice = choose(1, 6);
-      // choice = sc.nextInt();
       switch (choice) {
         case 1:
           displayMenuSPL();
           choice = choose(1,4);
           // System.out.println("pilihan 1:" + choice);
-          mat = createMatrix(false);
+          mustSquare = false;
+          mat = createMatrix(mustSquare);
           // displayMat(mat);
           
           // CALL SPL CLASS
@@ -28,7 +30,8 @@ class Main extends Menu{
           displayMenuDet();
           choice = choose(1,2);
           // System.out.println("pilihan 2:" + choice);
-          mat = createMatrix(true);
+          mustSquare = true;
+          mat = createMatrix(mustSquare);
           // CALL DETERMINANT CLASS
           
           displayMenuOutput();
@@ -38,21 +41,24 @@ class Main extends Menu{
         case 3:
           displayMenuInverse();
           choice = choose(1,2);
-          mat = createMatrix(true);
+          mustSquare = true;
+          mat = createMatrix(mustSquare);
           // CALL INVERSE
           displayMenuOutput();
           choice = choose(1,2);
           break;
         
         case 4:
-          mat = createMatrix(false);
+          mustSquare = false;
+          mat = createMatrix(mustSquare);
           // CALL INTERPOLASI POLINOM
           displayMenuOutput();
           choice = choose(1,2);
           break;
         
         case 5:
-          mat = createMatrix(false);
+          mustSquare = false;
+          mat = createMatrix(mustSquare);
           // CALL REGRESI LINIER BERGANDA 
           displayMenuOutput();
           choice = choose(1,2);
