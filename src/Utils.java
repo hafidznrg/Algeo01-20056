@@ -13,6 +13,9 @@ class Utils {
   protected static void println(String msg) {
     System.out.println(msg);
   }
+  protected static void println(double msg) {
+    System.out.println(msg);
+  }
   protected static void println(String format, Object... args){
     System.out.printf(format, args);
   }
@@ -60,6 +63,7 @@ class Utils {
   // TESTER
   public static void main(String[] args){
     println("Hello " + 5 + " mabar");
+    println("Test %d", 5);
     double[][] mat = new double[2][3];
 
     mat[0][0] = 1;
