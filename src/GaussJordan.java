@@ -1,3 +1,5 @@
+import java.io.*;
+
 public class GaussJordan {
     public static void main(String[] args){
         double[][] matrix = { { 1.00, 2.00, 3.00 }, { 0.00, -3.00, -6.00 }, { 0.00, -6.00, -12.00 } };
