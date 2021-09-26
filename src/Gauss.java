@@ -22,58 +22,115 @@ public class Gauss {
     }
 
     public static double[][] GaussJordan(double[][] matrix,  int row, int col){
-        /*misal ukuran masih n x n*/
-        for (int k = 0; k < row; k++){
-            /*cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
-            if (Math.abs(matrix[k][k]) < 1.0e-12 ){
-                for (int i = k+1; i < row ; i++) {
-                    if (Math.abs(matrix[i][k]) > Math.abs(matrix[k][k])){
-                        for (int j = 0; j <col; j++) {
-                            double temp = matrix[k][j];
-                            matrix[k][j] = matrix[i][j];
-                            matrix[i][j] = temp;
+        /*jika ukuran colom <= baris*/
+        if (col <= row){
+            for (int k = 0; k < col-1; k++){
+                /*cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
+                if (Math.abs(matrix[k][k]) < 1.0e-12 ){
+                    for (int i = k+1; i < row ; i++) {
+                        if (Math.abs(matrix[i][k]) > Math.abs(matrix[k][k])){
+                            for (int j = 0; j <col; j++) {
+                                double temp = matrix[k][j];
+                                matrix[k][j] = matrix[i][j];
+                                matrix[i][j] = temp;
+                            }
+                            break;
                         }
-                        break;
                     }
                 }
-            }
-            System.out.println("matrix setelah ditukar");
-            printMatrix(matrix, 3, 3);
-            //melakukan pembagian pada baris pivot
-            double pivot = matrix[k][k];
-            if (pivot == 0){
-                continue;
-            }
-            else{
-                System.out.println("ini pivot " + pivot);
-                for (int j = k; j < col; j++) {
-                    matrix[k][j] = matrix[k][j] / pivot;
-                }
-                System.out.println("matrix setelah dibagi pivot");
+                System.out.println("matrix setelah ditukar");
                 printMatrix(matrix, 3, 3);
-                System.out.println();
-
-
-                //melakukan eliminasi pada baris bawah dan atasnya agar bernilai = 0
-                for (int i = k+1; i < row; i++) {
-                    if ((i == k) || matrix[i][k] == 0){
-                        continue;
-                    }
-                    double factor = matrix[i][k];
-                    System.out.println("ini faktornya "+factor);
-                    for (int j = k; j < col ; j++) {
-                        matrix[i][j] = (matrix[i][j] - (factor * matrix[k][j]));
-                        //System.out.println("matix setelah dikurangi faktor "+matrix[i][j]);
-                    }
+                //melakukan pembagian pada baris pivot
+                double pivot = matrix[k][k];
+                if (Math.abs(pivot) < 1.0e-12){
+                    continue;
                 }
-                System.out.println("matrix setelah dieliminasi");
-                printMatrix(matrix, 3, 3);
+                else{
+                    System.out.println("ini pivot " + pivot);
+                    for (int j = k; j < col; j++) {
+                        matrix[k][j] = matrix[k][j] / pivot;
+                    }
+                    System.out.println("matrix setelah dibagi pivot");
+                    printMatrix(matrix, 3, 3);
+                    System.out.println();
 
 
+                    //melakukan eliminasi pada baris bawah dan atasnya agar bernilai = 0
+                    for (int i = k+1; i < row; i++) {
+                        if ((i == k) || matrix[i][k] == 0){
+                            continue;
+                        }
+                        double factor = matrix[i][k];
+                        System.out.println("ini faktornya "+factor);
+                        for (int j = k; j < col ; j++) {
+                            matrix[i][j] = (matrix[i][j] - (factor * matrix[k][j]));
+                            //System.out.println("matix setelah dikurangi faktor "+matrix[i][j]);
+                        }
+                    }
+                    System.out.println("matrix setelah dieliminasi");
+                    printMatrix(matrix, 3, 3);
+
+
+
+                }
 
             }
 
         }
+        else{
+            for (int k = 0; k < row; k++){
+                /*cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
+                if (Math.abs(matrix[k][k]) < 1.0e-12 ){
+                    for (int i = k+1; i < row ; i++) {
+                        if (Math.abs(matrix[i][k]) > Math.abs(matrix[k][k])){
+                            for (int j = 0; j <col; j++) {
+                                double temp = matrix[k][j];
+                                matrix[k][j] = matrix[i][j];
+                                matrix[i][j] = temp;
+                            }
+                            break;
+                        }
+                    }
+                }
+                System.out.println("matrix setelah ditukar");
+                printMatrix(matrix, 3, 3);
+                //melakukan pembagian pada baris pivot
+                double pivot = matrix[k][k];
+                if (Math.abs(pivot) < 1.0e-12){
+                    continue;
+                }
+                else{
+                    System.out.println("ini pivot " + pivot);
+                    for (int j = k; j < col; j++) {
+                        matrix[k][j] = matrix[k][j] / pivot;
+                    }
+                    System.out.println("matrix setelah dibagi pivot");
+                    printMatrix(matrix, 3, 3);
+                    System.out.println();
+
+
+                    //melakukan eliminasi pada baris bawah dan atasnya agar bernilai = 0
+                    for (int i = k+1; i < row; i++) {
+                        if ((i == k) || matrix[i][k] == 0){
+                            continue;
+                        }
+                        double factor = matrix[i][k];
+                        System.out.println("ini faktornya "+factor);
+                        for (int j = k; j < col ; j++) {
+                            matrix[i][j] = (matrix[i][j] - (factor * matrix[k][j]));
+                            //System.out.println("matix setelah dikurangi faktor "+matrix[i][j]);
+                        }
+                    }
+                    System.out.println("matrix setelah dieliminasi");
+                    printMatrix(matrix, 3, 3);
+
+
+
+                }
+
+            }
+        }
+
         return matrix;
     }
 }
