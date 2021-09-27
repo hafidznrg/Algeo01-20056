@@ -36,11 +36,11 @@ class Inverse extends Utils {
         }
       }
     }
-    displayMat(tempMat);
-    println();
+    // displayMat(tempMat);
+    // println();
     gaussJordan = GaussJordan.gaussJordan(tempMat,tempMat.length, tempMat[0].length);
-    displayMat(gaussJordan);
-    println();
+    // displayMat(gaussJordan);
+    // println();
 
     for (int i=0;i<result.length;i++) {
       for (int j=0;j<result[i].length;j++) {
