@@ -60,6 +60,41 @@ class Utils {
     return transposed;
   }
 
+
+  protected static double[][] multiplyConst(double[][] mat, double k) {
+    int rows = mat.length;
+    int cols = mat.length;
+    double[][] newMat = new double[rows][cols];
+
+    for (int i=0;i<rows;i++) {
+      for (int j=0;j<cols;j++) {
+        newMat[i][j] = k * mat[i][j];
+      }
+    }
+
+    return newMat;
+  }
+
+  protected static double[][] multiplyMatrix(double[][] mat1, double[][]mat2) {
+    // Prekondisi kolom mat1 = baris mat2
+    int rows1 = mat1.length;
+    int cols1 = mat1[0].length;
+    int rows2 = mat2.length;
+    int cols2 = mat2[0].length;
+    double[][] newMat = new double[rows1][cols2];
+
+    for (int i = 0; i < newMat.length; i++) {
+      for (int j = 0; j < newMat[0].length; j++) {
+        newMat[i][j] = 0;
+        for (int k = 0; k < cols1;k++) {
+          newMat[i][j] += mat1[i][k] * mat2[k][j];
+        }
+      } 
+    }
+    return newMat;
+  }
+
+
   // TESTER
   public static void main(String[] args){
     println("Hello " + 5 + " mabar");
