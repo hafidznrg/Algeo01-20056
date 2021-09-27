@@ -14,7 +14,7 @@ class Main extends Menu{
         case 1:
           displayMenuSPL();
           choice = choose(1,4);
-          // System.out.println("pilihan 1:" + choice);
+          // println("pilihan 1:" + choice);
           mustSquare = false;
           mat = createMatrix(mustSquare);
           // displayMat(mat);
@@ -29,7 +29,7 @@ class Main extends Menu{
         case 2:
           displayMenuDet();
           choice = choose(1,2);
-          // System.out.println("pilihan 2:" + choice);
+          // println("pilihan 2:" + choice);
           mustSquare = true;
           mat = createMatrix(mustSquare);
           // CALL DETERMINANT CLASS
@@ -65,7 +65,7 @@ class Main extends Menu{
           break;
 
         default:
-          System.out.println("Thank youu ^_^");
+          println("Thank youu ^_^");
           running = false;
       }
       println();
