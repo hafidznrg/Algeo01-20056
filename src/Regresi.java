@@ -137,35 +137,6 @@ public class Regresi extends Menu {
         }
     }
 
-    public static double[][] inputMatrixFile() {
-        String fileName;
-        int[] rowsCols;
-        double[][] mat;
-
-        fileName = inputFileName();
-        rowsCols = FileReadWrite.calcRowsCols(fileName);
-        mat = FileReadWrite.readFile(fileName, rowsCols[0], rowsCols[1]);
-
-        return mat;
-    }
-
-    public static String inputFileName() {
-        String fileName;
-        // To check whether the file is exist or not
-        FileReader fr = null;
-
-        println("Masukkan nama file");
-        print("> ");
-        fileName = sc.next();
-        try {
-            fr = new FileReader(fileName);
-        } catch (FileNotFoundException fe) {
-            println("File tidak ditemukan.");
-            fileName = inputFileName();
-        }
-
-        return fileName;
-    }
 
     public static void main(String[] args) {
         driverRegresi();
