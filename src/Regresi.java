@@ -110,7 +110,7 @@ public class Regresi extends Menu {
         for (int i = 0; i < res.length - 1; i++) {
             result += res[i + 1] * taksir[i];
         }
-        System.out.printf("Nilai taksirannya adalah %f\n\n", result);
+        println("Nilai taksirannya adalah %f\n\n", result);
 
         // Memilih menyimpan di file atau tidak
         displayMenuOutput();
