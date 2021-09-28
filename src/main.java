@@ -20,6 +20,24 @@ class Main extends Menu {
           // displayMat(mat);
 
           // CALL SPL CLASS
+          String[] result = new String[mat[0].length];
+          switch (choice) {
+            case 1: // eliminasi Gauss
+
+              break;
+
+            case 2: // eliminasi Gauss-Jordan
+
+              break;
+
+            case 3: // Metode matriks balikan
+
+              break;
+
+            case 4: // Kaidah Cramer
+
+              break;
+          }
           // res = SPL.calc(mat);
           displayMenuOutput();
           choice = choose(1, 2);
@@ -35,8 +53,7 @@ class Main extends Menu {
           // CALL DETERMINANT CLASS
           double det;
           if (choice == 1) {
-            det = 0;
-            // det = GaussTriangle.determinan(mat);
+            det = GaussTriangle.determinan(mat, mat.length, mat[0].length);
           } else {
             det = Cofactor.determinan(mat);
           }
@@ -59,8 +76,23 @@ class Main extends Menu {
           mustSquare = true;
           mat = createMatrix(mustSquare);
           // CALL INVERSE
+          double[][] inv = new double[mat.length][mat[0].length];
+          if (choice == 1) { // Eliminasi Gauss-Jordan
+            inv = Inverse.gaussJordanMethods(mat);
+          } else { // Metode cofactor
+            inv = Inverse.cofactorMethods(mat);
+          }
+          println("Inverse dari matriks");
+          displayMat(mat);
+          println("adalah");
+          displayMat(inv);
           displayMenuOutput();
           choice = choose(1, 2);
+          if (choice == 1) {
+            println("Masukkan path file yang dituju");
+            String path = sc.next();
+            FileReadWrite.writeFileInverse(path, mat, inv);
+          }
           break;
 
         case 4:

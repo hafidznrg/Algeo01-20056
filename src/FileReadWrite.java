@@ -97,6 +97,33 @@ class FileReadWrite extends Utils {
     }
   }
 
+  public static boolean writeFileInverse(String path, double[][] mat, double[][] inv) {
+    try {
+      FileWriter myWriter = new FileWriter(path);
+      myWriter.write("Inverse dari matriks :\n");
+      for (int i = 0; i < mat.length; i++) {
+        for (int j = 0; j < mat[i].length; j++) {
+          myWriter.write(Double.toString(mat[i][j]) + " ");
+        }
+        myWriter.write("\n");
+      }
+      // Add End Of File (new line)
+      myWriter.write("adalah ");
+      for (int i = 0; i < inv.length; i++) {
+        for (int j = 0; j < inv[i].length; j++) {
+          myWriter.write(Double.toString(inv[i][j]) + " ");
+        }
+        myWriter.write("\n");
+      }
+      myWriter.close();
+      println("Berhasil menuliskan pada " + path);
+      return true;
+    } catch (IOException e) {
+      println("Terjadi error.");
+      return false;
+    }
+  }
+
   // TESTER
   public static void main(String[] args) {
     int[] rowsCols = calcRowsCols("test/test.txt");

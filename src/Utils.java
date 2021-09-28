@@ -38,15 +38,13 @@ class Utils {
 
     println("Pilih antara " + min + " dan " + max);
     while (true) {
-      Scanner choiceScanner = new Scanner(System.in);
       print("> ");
-      input = choiceScanner.nextInt();
+      input = sc.nextInt();
       if (input >= min && input <= max) {
         break;
       } else {
         println("Pilihan invalid. Silakan input kembali!");
       }
-      choiceScanner.close();
     }
     return input;
   }
