@@ -5,10 +5,10 @@ public class Cramer extends Utils {
         //double[][] matrix = { { 4.00, 4.00, 4.00 }, { 4.00, 4.00, 4.00 }, { 4.00, 4.00, 4.00 } };
         double[][] matrix = { { -1.00, 2.00, -3.00, 1.00 }, { 2.00, 0.00, 1.00, 0.00 }, { 3.00, -4.00, 4.00, 2.00 } };
 
-        System.out.println("Matriks awalnya adalah : ");
-        printMatrix(matrix);
+        println("Matriks awalnya adalah : ");
+        displayMat(matrix);
 
-        CramerRule(matrix);
+        printRes(cramerRule(matrix));
     }
 
     public static void printRes(String[] args) {
