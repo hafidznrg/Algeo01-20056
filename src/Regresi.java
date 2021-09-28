@@ -71,15 +71,11 @@ public class Regresi extends Menu {
                 y[i] = sc.nextDouble();
             }
         } else {
-            print("Masukkan banyak peubah x: ");
-            n = sc.nextInt();
-            print("Masukkan banyak persamaan: ");
-            m = sc.nextInt();
-            raw = inputMatrixFile();
-            mat = new double[m][n];
-            y = new double[m];
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
+            raw = inputMatrixFile(false);
+            mat = new double[raw.length][raw[0].length -  1];
+            y = new double[raw.length];
+            for (int i = 0; i < mat.length; i++) {
+                for (int j = 0; j < mat[i].length; j++) {
                     mat[i][j] = raw[i][j];
                 }
                 y[i] = raw[i][raw[0].length - 1];
