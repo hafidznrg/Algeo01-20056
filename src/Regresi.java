@@ -54,11 +54,7 @@ public class Regresi extends Menu {
         int pilihan, n, m;
         double[][] mat, raw;
         double[] y;
-        pilihan = sc.nextInt();
-        while (pilihan < 1 || pilihan > 2) {
-            println("Masukan salah, silakan ulangi lagi");
-            pilihan = sc.nextInt();
-        }
+        pilihan = choose(1,2);
 
         if (pilihan == 1) {
             print("Masukkan banyak peubah x: ");
