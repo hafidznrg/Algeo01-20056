@@ -10,6 +10,7 @@ class Menu extends Utils {
     println("5. Regresi Linier Berganda");
     println("6. Keluar");
   }
+
   protected static void displayMenuSPL() {
     println("Menu Sistem Persamaan Linear");
     println("1. Metode eliminasi Gauss");
@@ -17,31 +18,36 @@ class Menu extends Utils {
     println("3. Metode matriks balikan");
     println("4. Kaidah Cramer");
   }
+
   protected static void displayMenuDet() {
     println("Menu Determinan");
     println("1. Metode eliminasi Gauss");
     println("2. Metode ekspansi kofaktor");
   }
+
   protected static void displayMenuInverse() {
     println("Menu Inverse");
     println("1. Metode eliminasi Gauss-Jordan");
     println("2. Metode matriks kofaktor");
   }
+
   protected static void displayMenuData() {
     println("Menu Input Data Matriks");
     println("1. Input Keyboard");
     println("2. Input File");
   }
+
   protected static void displayMenuOutput() {
-    println("Menu Output");
-    println("1. Output ke layar");
-    println("2. Output ke file");
+    println("Apakah Anda ingin menyimpan hasil ini ke dalam file?");
+    println("1. Ya");
+    println("2. Tidak");
   }
+
   protected static double[][] createMatrix(boolean mustSquare) {
     double[][] mat;
 
     displayMenuData();
-    int choice = choose(1,2);
+    int choice = choose(1, 2);
     if (choice == 1) {
       mat = inputMatrixKeyboard(mustSquare);
     } else {
@@ -74,18 +80,19 @@ class Menu extends Utils {
       }
     }
     mat = new double[rows][cols];
-    
+
     println("Masukkan elemen matriks");
     for (int i = 0; i < rows; i++) {
-      for (int j =0;j<cols; j++) {
-        print("Elemen baris ke-"+ (i+1) + " kolom ke-" + (j+1) +": ");
+      for (int j = 0; j < cols; j++) {
+        print("Elemen baris ke-" + (i + 1) + " kolom ke-" + (j + 1) + ": ");
         mat[i][j] = sc.nextDouble();
       }
     }
 
     return mat;
   }
-  private static double[][] inputMatrixFile(boolean mustSquare) {
+
+  protected static double[][] inputMatrixFile(boolean mustSquare) {
     String fileName;
     int[] rowsCols;
     double[][] mat;
@@ -93,28 +100,28 @@ class Menu extends Utils {
     while (true) {
       fileName = inputFileName();
       rowsCols = FileReadWrite.calcRowsCols(fileName);
-      if (mustSquare && (rowsCols[0] != rowsCols[1])){
+      if (mustSquare && (rowsCols[0] != rowsCols[1])) {
         println("Matriks dalam file tidak berbentuk persegi");
       } else {
         break;
       }
     }
-    mat = FileReadWrite.readFile(fileName, rowsCols[0],rowsCols[1]);
+    mat = FileReadWrite.readFile(fileName, rowsCols[0], rowsCols[1]);
 
     return mat;
   }
-  private static String inputFileName() {
+
+  protected static String inputFileName() {
     String fileName;
     // To check whether the file is exist or not
-    FileReader fr=null;
+    FileReader fr = null;
 
     println("Masukkan nama file");
     print("> ");
     fileName = sc.next();
     try {
       fr = new FileReader(fileName);
-    }
-    catch (FileNotFoundException fe) {
+    } catch (FileNotFoundException fe) {
       println("File tidak ditemukan.");
       fileName = inputFileName();
     }
