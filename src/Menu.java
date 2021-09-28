@@ -111,7 +111,7 @@ class Menu extends Utils {
     return mat;
   }
 
-  private static String inputFileName() {
+  protected static String inputFileName() {
     String fileName;
     // To check whether the file is exist or not
     FileReader fr = null;
