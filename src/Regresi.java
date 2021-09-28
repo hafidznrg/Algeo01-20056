@@ -50,37 +50,35 @@ public class Regresi extends Menu {
     }
 
     public static void driverRegresi() {
-        Scanner input = new Scanner(System.in);
         println("Pilih Masukan\n1. Masukan dari keyboard\n2. Masukan dari file");
         int pilihan, n, m;
-        String fileName;
         double[][] mat, raw;
         double[] y;
-        pilihan = input.nextInt();
+        pilihan = sc.nextInt();
         while (pilihan < 1 || pilihan > 2) {
             println("Masukan salah, silakan ulangi lagi");
-            pilihan = input.nextInt();
+            pilihan = sc.nextInt();
         }
 
         if (pilihan == 1) {
             print("Masukkan banyak peubah x: ");
-            n = input.nextInt();
+            n = sc.nextInt();
             print("Masukkan banyak persamaan: ");
-            m = input.nextInt();
+            m = sc.nextInt();
             System.out.printf("Masukkan %d persamaan\n", m);
             mat = new double[m][n];
             y = new double[m];
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
-                    mat[i][j] = input.nextDouble();
+                    mat[i][j] = sc.nextDouble();
                 }
-                y[i] = input.nextDouble();
+                y[i] = sc.nextDouble();
             }
         } else {
             print("Masukkan banyak peubah x: ");
-            n = input.nextInt();
+            n = sc.nextInt();
             print("Masukkan banyak persamaan: ");
-            m = input.nextInt();
+            m = sc.nextInt();
             raw = inputMatrixFile();
             mat = new double[m][n];
             y = new double[m];
@@ -110,7 +108,7 @@ public class Regresi extends Menu {
         System.out.printf("Masukkan %d peubah yang akan ditaksir nilai fungsinya\n", res.length - 1);
         double[] taksir = new double[res.length];
         for (int i = 0; i < res.length - 1; i++) {
-            taksir[i] = input.nextDouble();
+            taksir[i] = sc.nextDouble();
         }
         double result = res[0];
         for (int i = 0; i < res.length - 1; i++) {
@@ -124,7 +122,7 @@ public class Regresi extends Menu {
         if (choice == 1) {
             try {
                 print("Masukkan path file yang dituju\n> ");
-                String path = input.next();
+                String path = sc.next();
                 FileWriter myWriter = new FileWriter(path);
                 myWriter.write("Persamaan regresi linear berganda yang diperoleh\ny = ");
                 myWriter.write(Double.toString(res[0]));
@@ -145,7 +143,6 @@ public class Regresi extends Menu {
                 println("Terjadi error.");
             }
         }
-
     }
 
     public static double[][] inputMatrixFile() {

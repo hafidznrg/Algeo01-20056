@@ -7,52 +7,62 @@ class Utils {
   protected static void print(String msg) {
     System.out.print(msg);
   }
+
   protected static void println() {
     System.out.println();
   }
+
   protected static void println(String msg) {
     System.out.println(msg);
   }
+
   protected static void println(double msg) {
     System.out.println(msg);
   }
-  protected static void println(String format, Object... args){
+
+  protected static void println(String format, Object... args) {
     System.out.printf(format, args);
   }
+
   protected static void displayMat(double[][] mat) {
-    for (int i = 0; i < mat.length; i++){
-      for (int j = 0; j < mat[i].length; j++){
+    for (int i = 0; i < mat.length; i++) {
+      for (int j = 0; j < mat[i].length; j++) {
         print(mat[i][j] + " ");
       }
       println();
     }
   }
+
   protected static int choose(int min, int max) {
     int input;
-    
+
     println("Pilih antara " + min + " dan " + max);
     while (true) {
+      Scanner choiceScanner = new Scanner(System.in);
       print("> ");
-      input = sc.nextInt();
+      input = choiceScanner.nextInt();
       if (input >= min && input <= max) {
         break;
       } else {
         println("Pilihan invalid. Silakan input kembali!");
       }
+      choiceScanner.close();
     }
     return input;
   }
+
   protected static boolean isSquare(double[][] mat) {
     // Prekondisi mat terdefinisi / tidak kosong dan mat berbentuk kotak
-    
+
     return (mat.length == mat[0].length);
   }
+
   protected static double[][] transpose(double[][] mat) {
-    int i,j;
+    int i, j;
     double[][] transposed = new double[mat[0].length][mat.length];
 
-    for (i=0;i<transposed.length;i++) {
-      for (j=0;j<transposed[i].length;j++) {
+    for (i = 0; i < transposed.length; i++) {
+      for (j = 0; j < transposed[i].length; j++) {
         transposed[i][j] = mat[j][i];
       }
     }
@@ -60,14 +70,13 @@ class Utils {
     return transposed;
   }
 
-
   protected static double[][] multiplyConst(double[][] mat, double k) {
     int rows = mat.length;
     int cols = mat.length;
     double[][] newMat = new double[rows][cols];
 
-    for (int i=0;i<rows;i++) {
-      for (int j=0;j<cols;j++) {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
         newMat[i][j] = k * mat[i][j];
       }
     }
@@ -75,7 +84,7 @@ class Utils {
     return newMat;
   }
 
-  protected static double[][] multiplyMatrix(double[][] mat1, double[][]mat2) {
+  protected static double[][] multiplyMatrix(double[][] mat1, double[][] mat2) {
     // Prekondisi kolom mat1 = baris mat2
     int rows1 = mat1.length;
     int cols1 = mat1[0].length;
@@ -86,17 +95,16 @@ class Utils {
     for (int i = 0; i < newMat.length; i++) {
       for (int j = 0; j < newMat[0].length; j++) {
         newMat[i][j] = 0;
-        for (int k = 0; k < cols1;k++) {
+        for (int k = 0; k < cols1; k++) {
           newMat[i][j] += mat1[i][k] * mat2[k][j];
         }
-      } 
+      }
     }
     return newMat;
   }
 
-
   // TESTER
-  public static void main(String[] args){
+  public static void main(String[] args) {
     println("Hello " + 5 + " mabar");
     println("Test %d", 5);
     double[][] mat = new double[2][3];
@@ -107,18 +115,18 @@ class Utils {
     mat[1][0] = 4;
     mat[1][1] = 5;
     mat[1][2] = 6;
-    
+
     double[][] transposed = transpose(mat);
 
     println("Ori Mat");
     displayMat(mat);
     println("transposed mat");
     displayMat(transposed);
-    
+
     if (isSquare(mat)) {
       println("Mat is square");
     }
-    int input = choose(2,5);
+    int input = choose(2, 5);
 
     println("pilihan: " + input);
   }

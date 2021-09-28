@@ -3,15 +3,14 @@ import java.util.*;
 
 class FileReadWrite extends Utils {
   public static int[] calcRowsCols(String fileName) {
-    FileReader fr=null;
+    FileReader fr = null;
     try {
       fr = new FileReader(fileName);
-    }
-    catch (FileNotFoundException fe) {
+    } catch (FileNotFoundException fe) {
       println("File tidak ditemukan");
     }
-    
-    int rows=0, cols=0;
+
+    int rows = 0, cols = 0;
     String row = "";
     Scanner rowScanner = new Scanner(fr);
     while (rowScanner.hasNextLine()) {
@@ -32,22 +31,22 @@ class FileReadWrite extends Utils {
 
     return rowsCols;
   }
-  public static double[][] readFile(String fileName, int rows, int cols){
-    double[][] mat = new double[rows][cols]; 
-    
+
+  public static double[][] readFile(String fileName, int rows, int cols) {
+    double[][] mat = new double[rows][cols];
+
     println("Mencoba membaca file: " + fileName);
 
-    FileReader fr=null;
+    FileReader fr = null;
     try {
       fr = new FileReader(fileName);
-    }
-    catch (FileNotFoundException fe) {
+    } catch (FileNotFoundException fe) {
       println("File tidak ditemukan");
     }
     Scanner rowScanner2 = new Scanner(fr);
 
-    for (int i=0;i<rows;i++) {
-      for (int j=0;j<cols;j++) {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
         double input = rowScanner2.nextDouble();
         mat[i][j] = input;
       }
@@ -55,12 +54,12 @@ class FileReadWrite extends Utils {
     rowScanner2.close();
     return mat;
   }
-  
+
   public static boolean writeFile(String path, double[][] mat) {
     try {
       FileWriter myWriter = new FileWriter(path);
-      for (int i=0;i<mat.length;i++) {
-        for (int j=0;j<mat[i].length; j++) {
+      for (int i = 0; i < mat.length; i++) {
+        for (int j = 0; j < mat[i].length; j++) {
           myWriter.write(Double.toString(mat[i][j]) + " ");
         }
         myWriter.write("\n");
@@ -76,20 +75,42 @@ class FileReadWrite extends Utils {
     }
   }
 
+  public static boolean writeFileDeterminan(String path, double[][] mat, double det) {
+    try {
+      FileWriter myWriter = new FileWriter(path);
+      myWriter.write("Determinan dari matriks :\n");
+      for (int i = 0; i < mat.length; i++) {
+        for (int j = 0; j < mat[i].length; j++) {
+          myWriter.write(Double.toString(mat[i][j]) + " ");
+        }
+        myWriter.write("\n");
+      }
+      // Add End Of File (new line)
+      myWriter.write("\nadalah ");
+      myWriter.write(Double.toString(det));
+      myWriter.close();
+      println("Berhasil menuliskan pada " + path);
+      return true;
+    } catch (IOException e) {
+      println("Terjadi error.");
+      return false;
+    }
+  }
+
   // TESTER
-  public static void main(String[] args){
+  public static void main(String[] args) {
     int[] rowsCols = calcRowsCols("test/test.txt");
-    double[][] mat = readFile("test/test.txt",rowsCols[0],rowsCols[1]);
+    double[][] mat = readFile("test/test.txt", rowsCols[0], rowsCols[1]);
 
     displayMat(mat);
 
     boolean success = false;
     while (!success) {
-      success = writeFile("new/output.txt",mat);
+      success = writeFile("new/output.txt", mat);
       if (success)
         break;
       else {
-        success = writeFile("test/lala.txt",mat);
+        success = writeFile("test/lala.txt", mat);
       }
     }
     println("test");
