@@ -11,14 +11,9 @@ public class Cramer extends Utils {
         CramerRule(matrix);
     }
 
-    public static void printMatrix(double[][] Matrix) {
-        int row = Matrix.length;
-        int col = Matrix[0].length;
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                System.out.print(Matrix[i][j] + " ");
-            }
-            System.out.println();
+    public static void printRes(String[] args) {
+        for (int i = 0; i < args.length; i++) {
+            println(args[i]);
         }
     }
 
