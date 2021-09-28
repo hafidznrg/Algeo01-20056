@@ -42,7 +42,7 @@ class Main extends Menu {
           }
           println("Determinan dari matriks");
           displayMat(mat);
-          System.out.printf("adalah %f\n", det);
+          println("adalah %f\n", det);
 
           displayMenuOutput();
           choice = choose(1, 2);
