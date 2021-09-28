@@ -92,7 +92,7 @@ class Menu extends Utils {
     return mat;
   }
 
-  private static double[][] inputMatrixFile(boolean mustSquare) {
+  protected static double[][] inputMatrixFile(boolean mustSquare) {
     String fileName;
     int[] rowsCols;
     double[][] mat;
