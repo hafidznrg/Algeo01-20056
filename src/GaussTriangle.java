@@ -214,7 +214,7 @@ public class GaussTriangle extends Utils {
         }
         //System.out.println(numSwap);
         //System.out.println(sumPivot);
-        System.out.println("Diswap: "+numSwap);
+        // System.out.println("Diswap: "+numSwap);
         result = (Math.pow(-1, numSwap) * sumPivot);
         return result;
     }
