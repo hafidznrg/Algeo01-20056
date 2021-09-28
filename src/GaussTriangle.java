@@ -118,8 +118,8 @@ public class GaussTriangle extends Utils {
 
     public static double determinan(double[][] matrix,  int row, int col){
         int numSwap = 0;
-        System.out.println("matrix awal: ");
-        printMatrix(matrix, row, col);
+        // System.out.println("matrix awal: ");
+        // printMatrix(matrix, row, col);
         if (col <= row){
             for (int k = 0; k < col-1; k++){
                 /*cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
