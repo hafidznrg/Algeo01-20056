@@ -130,6 +130,29 @@ public class GaussJordan extends Utils {
 
         return matrix;
     }
+
+    /*public static void spl(double[][] matrix){
+       double newMatrix[][] =  GaussJordan(matrix, 4, 3);
+       int col = matrix[0].length;
+       int row = matrix.length;
+       int j = 0;
+       boolean equalZero = true;
+       while ( equalZero && (j < (col -1))){
+           if (newMatrix[row-1][j] != 0){
+               equalZero = false;
+           }
+       }
+       boolean parametrik ==
+       if (equalZero && newMatrix[row-1][col-1] == 0 || row < col-1){
+           return parametrik
+       }
+       else if (equalZero && newMatrix[row-1][col-1] != 0){
+           return tidakAdaSolusi
+       }
+       else{
+           return; solusiUnik
+       }
+    }*/
 }
 
 
