@@ -92,16 +92,16 @@ public class Regresi extends Menu {
 
         // Mengeluarkan persamaan regresi linear berganda
         println("\nPersamaan regresi linear berganda yang diperoleh");
-        System.out.printf("y = %f", res[0]);
+        println("y = %f", res[0]);
         for (int i = 1; i < res.length; i++) {
             if (res[i] > 0) {
-                System.out.printf(" + %f x%d", res[i], i);
+                println(" + %f x%d", res[i], i);
             } else {
-                System.out.printf(" %f x%d", res[i], i);
+                println(" %f x%d", res[i], i);
             }
         }
         println("\n\nMenaksir nilai fungsi");
-        System.out.printf("Masukkan %d peubah yang akan ditaksir nilai fungsinya\n", res.length - 1);
+        println("Masukkan %d peubah yang akan ditaksir nilai fungsinya\n", res.length - 1);
         double[] taksir = new double[res.length];
         for (int i = 0; i < res.length - 1; i++) {
             taksir[i] = sc.nextDouble();
