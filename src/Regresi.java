@@ -10,8 +10,8 @@ public class Regresi extends Menu {
         for (int i = 0; i < row; i++) {
             temp[i][0] = 1;
         }
-        for (int j = 1; j <= col; j++) {
-            for (int i = 0; i < row; i++) {
+        for (int i = 0; i < row; i++) {
+            for (int j = 1; j <= col; j++) {
                 temp[i][j] = matrix[i][j - 1];
             }
         }
