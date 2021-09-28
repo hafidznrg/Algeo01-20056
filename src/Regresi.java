@@ -61,7 +61,7 @@ public class Regresi extends Menu {
             n = sc.nextInt();
             print("Masukkan banyak persamaan: ");
             m = sc.nextInt();
-            System.out.printf("Masukkan %d persamaan\n", m);
+            println("Masukkan %d persamaan\n", m);
             mat = new double[m][n];
             y = new double[m];
             for (int i = 0; i < m; i++) {
