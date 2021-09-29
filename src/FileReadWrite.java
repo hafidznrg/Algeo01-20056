@@ -75,6 +75,22 @@ class FileReadWrite extends Utils {
     }
   }
 
+  public static boolean writeFileSPL(String path, String[] res) {
+    try {
+      FileWriter myWriter = new FileWriter(path);
+      for (int i = 0; i < res.length; i++) {
+        myWriter.write(res[i] + "\n");
+      }
+      // Add End Of File (new line)
+      myWriter.close();
+      println("Berhasil menuliskan pada " + path);
+      return true;
+    } catch (IOException e) {
+      println("Terjadi error.");
+      return false;
+    }
+  }
+
   public static boolean writeFileDeterminan(String path, double[][] mat, double det) {
     try {
       FileWriter myWriter = new FileWriter(path);
