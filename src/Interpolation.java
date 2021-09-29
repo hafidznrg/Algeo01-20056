@@ -67,7 +67,7 @@ public class Interpolation extends Utils {
         print("Persamaan polinomial yang diperoleh\ny =");
         for (int i = b.length - 1; i >= 0; i--) {
             if (!isZero(b[i])) {
-                if (b[i] > 0 && first)
+                if (first)
                     first = false;
                 else if (b[i] > 0 && !first)
                     print(" +");
