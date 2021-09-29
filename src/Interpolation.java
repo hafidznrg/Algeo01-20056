@@ -9,7 +9,7 @@ public class Interpolation extends Utils {
                 { 1.1, 0.518 }, { 1.3, 0.697 } };
         // double[][] matrix = { { 1.00, 2.00, 3.00 }, { 0.00, -3.00, -6.00 }, { 0.00,
         // -6.00, -12.00 }, {4.00, 3.00, 2.00} };
-        double[] koef = polynomial(matrix, matrix.length - 1);
+        double[] koef = polynomial(matrix);
         double result = estimate(koef, 0.2);
         println(result);
     }
