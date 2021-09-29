@@ -126,12 +126,15 @@ public class Gauss extends Utils {
         }
 
         double temp;
+        double[] res = new double[cols];
+        res[cols - 1] = mat[rows - 1][cols - 1];
         if (unique) {
             for (int i = rows - 1; i >= 0; i--) {
                 temp = mat[i][cols - 1];
                 for (int j = rows - 1; j > i; j--) {
-                    temp -= mat[i][j] * mat[j][cols - 1];
+                    temp -= mat[i][j] * res[j];
                 }
+                res[i] = temp;
                 result[i] = "x" + (i + 1) + " = " + temp;
             }
         } else {
