@@ -124,6 +124,42 @@ class FileReadWrite extends Utils {
     }
   }
 
+  public static boolean writeFileInterpolasi(String path, double[] koef, double nilai, double taksiran) {
+    try {
+      FileWriter myWriter = new FileWriter(path);
+      myWriter.write("Persamaan polinom\ny =");
+      boolean first = true;
+      for (int i = koef.length - 1; i >= 0; i--) {
+        if (!isZero(koef[i])) {
+          if (koef[i] > 0 && first)
+            first = false;
+          else if (koef[i] > 0 && !first) {
+            myWriter.write(" +");
+          }
+          myWriter.write(" ");
+          myWriter.write(Double.toString(koef[i]));
+          if (i != 0) {
+            myWriter.write(" x^");
+            myWriter.write(Integer.toString(i));
+          }
+        }
+      }
+      myWriter.write("\n");
+      myWriter.write("Taksiran nilai fungsi dari ");
+      myWriter.write(Double.toString(nilai));
+      myWriter.write(" adalah ");
+      myWriter.write(Double.toString(taksiran));
+      // Add End Of File (new line)
+      myWriter.write("\n");
+      myWriter.close();
+      println("Berhasil menuliskan pada " + path);
+      return true;
+    } catch (IOException e) {
+      println("Terjadi error.");
+      return false;
+    }
+  }
+
   // TESTER
   public static void main(String[] args) {
     int[] rowsCols = calcRowsCols("test/test.txt");

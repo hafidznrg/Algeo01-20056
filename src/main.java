@@ -64,7 +64,7 @@ class Main extends Menu {
           displayMenuOutput();
           choice = choose(1, 2);
           if (choice == 1) {
-            println("Masukkan path file yang dituju");
+            print("Masukkan path file yang dituju\n> ");
             String path = sc.next();
             FileReadWrite.writeFileDeterminan(path, mat, det);
           }
@@ -89,7 +89,7 @@ class Main extends Menu {
           displayMenuOutput();
           choice = choose(1, 2);
           if (choice == 1) {
-            println("Masukkan path file yang dituju");
+            print("Masukkan path file yang dituju\n> ");
             String path = sc.next();
             FileReadWrite.writeFileInverse(path, mat, inv);
           }
@@ -99,8 +99,19 @@ class Main extends Menu {
           mustSquare = false;
           mat = createMatrix(mustSquare);
           // CALL INTERPOLASI POLINOM
+          double[] koef = Interpolation.polynomial(mat, mat.length - 1);
+          print("Masukkan nilai yang akan ditaksir : ");
+          double nilai = sc.nextDouble();
+          double taksiran = Interpolation.estimate(koef, nilai);
+          println("Nilai taksiran dari %f adalah ", nilai);
+          println(taksiran);
           displayMenuOutput();
           choice = choose(1, 2);
+          if (choice == 1) {
+            print("Masukkan path file yang dituju\n> ");
+            String path = sc.next();
+            FileReadWrite.writeFileInterpolasi(path, koef, nilai, taksiran);
+          }
           break;
 
         case 5:
