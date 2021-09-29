@@ -3,7 +3,8 @@ public class Cramer extends Utils {
         //double[][] matrix = { { 1.00, 2.00, 3.00 }, { 4.00, 5.00, 6.00 }, { 7.00, 8.00, 9.00 } };
         //double[][] matrix = { { 1.00, 0.00, 0.00 }, { 0.00, 1.00, 0.00 }, { 0.00, 0.00, 1.00 } };
         //double[][] matrix = { { 4.00, 4.00, 4.00 }, { 4.00, 4.00, 4.00 }, { 4.00, 4.00, 4.00 } };
-        double[][] matrix = { { -1.00, 2.00, -3.00, 1.00 }, { 2.00, 0.00, 1.00, 0.00 }, { 3.00, -4.00, 4.00, 2.00 } };
+        // double[][] matrix = { { -1.00, 2.00, -3.00, 1.00 }, { 2.00, 0.00, 1.00, 0.00 }, { 3.00, -4.00, 4.00, 2.00 } };
+        double[][] matrix = {{1.00, 2.00, 3.00, 7.00},{0.00, 1.00, 4.00, 10.00,},{0.00, 0.00, 1.00, 5.00}};
 
         println("Matriks awalnya adalah : ");
         displayMat(matrix);
@@ -22,6 +23,7 @@ public class Cramer extends Utils {
 
         int row = matrix.length;
         int col = matrix[0].length;
+        double[][] squareMat = squareMatFromAugmented(matrix);
         String[] result = new String[col-1];
 
         //model Ax = b
@@ -51,7 +53,7 @@ public class Cramer extends Utils {
             int xNow = k+1;
             //menghitung nilai x[xNow] = determinan(A[k])/determinan(matrix origin)
             // Not yet solve
-            double x = Cofactor.determinan(a)/Cofactor.determinan(matrix);
+            double x = Cofactor.determinan(a)/Cofactor.determinan(squareMat);
             //System.out.println(x);
             result[k] = "Nilai X"+xNow+": "+x;
             // println("Nilai X"+xNow+": "+x);

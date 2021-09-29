@@ -49,4 +49,23 @@ class Inverse extends Utils {
     }
     return result;
   }
+  public static String[] solveSPL(double[][] mat) {
+    int rows = mat.length;
+    int cols = mat[0].length;
+    double[][] bMat = new double[rows][1];
+    String[] result = new String[rows+1];
+    
+    for (int i=0;i<rows;i++) {
+      bMat[i][0] = mat[i][cols-1];
+    }
+    double[][] inverse = cofactorMethods(squareMatFromAugmented(mat));
+    double[][] multiplied = multiplyMatrix(inverse, bMat);
+
+    result[0] = "Solusi dari SPL tersebut menggunakan metode matriks balikan ialah: ";
+    for (int i=0;i<rows;i++) {
+      result[i+1] = "x" + (i+1) + " = " + multiplied[i][0];
+    }
+
+    return result;
+  }
 }

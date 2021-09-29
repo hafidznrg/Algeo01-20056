@@ -32,6 +32,11 @@ class Utils {
       println();
     }
   }
+  protected static void displayResults(String[] result) {
+    for (int i = 0; i < result.length; i++) {
+      println(result[i]);
+    }
+  }
 
   protected static int choose(int min, int max) {
     int input;
@@ -103,6 +108,19 @@ class Utils {
   protected static boolean isZero(double x) {
     double epsilon = 0.00000001;
     return ((x < epsilon) && (x > - epsilon));
+  }
+
+  protected static double[][] squareMatFromAugmented(double[][] mat) {
+    int rows = mat.length;
+    int cols = mat[0].length;
+    double[][] newMat = new double[rows][rows];
+
+    for (int i=0;i<rows;i++) {
+      for (int j=0;j<rows;j++) {
+        newMat[i][j] = mat[i][j];
+      }
+    }
+    return newMat;
   }
 
   // TESTER
