@@ -9,14 +9,6 @@ public class Interpolation extends Utils {
                 { 1.1, 0.518 }, { 1.3, 0.697 } };
         // double[][] matrix = { { 1.00, 2.00, 3.00 }, { 0.00, -3.00, -6.00 }, { 0.00,
         // -6.00, -12.00 }, {4.00, 3.00, 2.00} };
-        // printMatrix(matrix, 3, 3);
-        // System.out.println("Matriks eselon barisnya adalah : ");
-        // double[][] baru = GaussTriangle(matrix, 3, 3);
-        // printMatrix(baru, 3, 3);
-        // double dtrmn = determinan(matrix, 3, 3);
-        // System.out.println("Nilai Determinannya; ");
-        // System.out.println(dtrmn);
-        // double result = polynomial(matrix, d2, 9.2);
         double[] koef = polynomial(matrix, matrix.length - 1);
         double result = estimate(koef, 0.2);
         println(result);
@@ -69,14 +61,20 @@ public class Interpolation extends Utils {
         for (int i = 0; i < row; i++) {
             b[i] = newMatrix[i][col - 1];
         }
-        print("y =");
+
+        // Mengeluarkan persamaan polinomial
+        boolean first = true;
+        print("Persamaan polinomial yang diperoleh\ny =");
         for (int i = b.length - 1; i >= 0; i--) {
-            if (b[i] > 0 && i != b.length - 1) {
-                print(" +");
-            }
-            System.out.printf(" %f", b[i]);
-            if (i != 0) {
-                System.out.printf(" x%d", i);
+            if (!isZero(b[i])) {
+                if (b[i] > 0 && first)
+                    first = false;
+                else if (b[i] > 0 && !first)
+                    print(" +");
+                println(" %f", b[i]);
+                if (i != 0) {
+                    println(" x^%d", i);
+                }
             }
         }
         println();

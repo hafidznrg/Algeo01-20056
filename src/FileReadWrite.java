@@ -128,15 +128,20 @@ class FileReadWrite extends Utils {
     try {
       FileWriter myWriter = new FileWriter(path);
       myWriter.write("Persamaan polinom\ny =");
+      boolean first = true;
       for (int i = koef.length - 1; i >= 0; i--) {
-        if (koef[i] > 0 && i != koef.length - 1) {
-          myWriter.write(" +");
-        }
-        myWriter.write(" ");
-        myWriter.write(Double.toString(koef[i]));
-        if (i != 0) {
-          myWriter.write(" x");
-          myWriter.write(Double.toString(i));
+        if (!isZero(koef[i])) {
+          if (koef[i] > 0 && first)
+            first = false;
+          else if (koef[i] > 0 && !first) {
+            myWriter.write(" +");
+          }
+          myWriter.write(" ");
+          myWriter.write(Double.toString(koef[i]));
+          if (i != 0) {
+            myWriter.write(" x^");
+            myWriter.write(Integer.toString(i));
+          }
         }
       }
       myWriter.write("\n");

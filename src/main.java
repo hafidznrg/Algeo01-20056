@@ -64,7 +64,7 @@ class Main extends Menu {
           displayMenuOutput();
           choice = choose(1, 2);
           if (choice == 1) {
-            println("Masukkan path file yang dituju");
+            print("Masukkan path file yang dituju\n> ");
             String path = sc.next();
             FileReadWrite.writeFileDeterminan(path, mat, det);
           }
@@ -89,7 +89,7 @@ class Main extends Menu {
           displayMenuOutput();
           choice = choose(1, 2);
           if (choice == 1) {
-            println("Masukkan path file yang dituju");
+            print("Masukkan path file yang dituju\n> ");
             String path = sc.next();
             FileReadWrite.writeFileInverse(path, mat, inv);
           }
@@ -108,7 +108,7 @@ class Main extends Menu {
           displayMenuOutput();
           choice = choose(1, 2);
           if (choice == 1) {
-            println("Masukkan path file yang dituju");
+            print("Masukkan path file yang dituju\n> ");
             String path = sc.next();
             FileReadWrite.writeFileInterpolasi(path, koef, nilai, taksiran);
           }
