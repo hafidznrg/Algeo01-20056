@@ -36,9 +36,9 @@ public class Interpolation extends Utils {
         return res;
     }
 
-    public static double[] polynomial(double[][] matrix, int n) {
-        int row = n + 1;
-        int col = n + 2;
+    public static double[] polynomial(double[][] matrix) {
+        int row = matrix.length;
+        int col = matrix.length + 1;
         double[][] matrixPolynom = new double[row][col];
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
