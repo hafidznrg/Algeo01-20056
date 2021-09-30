@@ -120,12 +120,12 @@ class Menu extends Utils {
     print("> ");
     fileName = sc.next();
     try {
-      fr = new FileReader(fileName);
+      fr = new FileReader("../test/" + fileName);
     } catch (FileNotFoundException fe) {
       println("File tidak ditemukan.");
       fileName = inputFileName();
     }
 
-    return fileName;
+    return ("../test/" + fileName);
   }
 }

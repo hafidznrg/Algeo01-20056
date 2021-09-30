@@ -140,6 +140,27 @@ class FileReadWrite extends Utils {
     }
   }
 
+  public static boolean writeFileNoInverse(String path, double[][] mat) {
+    try {
+      FileWriter myWriter = new FileWriter(path);
+      myWriter.write("Matriks :\n");
+      for (int i = 0; i < mat.length; i++) {
+        for (int j = 0; j < mat[i].length; j++) {
+          myWriter.write(Double.toString(mat[i][j]) + " ");
+        }
+        myWriter.write("\n");
+      }
+      // Add End Of File (new line)
+      myWriter.write("\nTidak memiliki inverse karena determinannya 0");
+      myWriter.close();
+      println("Berhasil menuliskan pada " + path);
+      return true;
+    } catch (IOException e) {
+      println("Terjadi error.");
+      return false;
+    }
+  }
+
   public static boolean writeFileInterpolasi(String path, double[] koef, double nilai, double taksiran) {
     try {
       FileWriter myWriter = new FileWriter(path);

@@ -5,12 +5,6 @@ class ParametricSolver extends Utils {
     displayResults(solve(mat,false));
   }
   
-  private static void displayResults(String[] res) {
-    for (int i=0;i<res.length;i++) {
-      println(res[i]);
-    }
-  }
-
   private static int idxEselon1(double[][] mat, int colMat) {
     int i, idx;
     boolean onlyOnce=true;

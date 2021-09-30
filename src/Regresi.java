@@ -112,27 +112,31 @@ public class Regresi extends Menu {
         displayMenuOutput();
         int choice = choose(1, 2);
         if (choice == 1) {
-            try {
-                print("Masukkan path file yang dituju\n> ");
-                String path = sc.next();
-                FileWriter myWriter = new FileWriter(path);
-                myWriter.write("Persamaan regresi linear berganda yang diperoleh\ny = ");
-                myWriter.write(Double.toString(res[0]));
-                for (int i = 1; i < res.length; i++) {
-                    if (res[i] > 0) {
-                        myWriter.write(" + ");
+            boolean success = false;
+            while (!success) {
+                try {
+                    print("Masukkan path file yang dituju\n> ");
+                    String path = sc.next();
+                    FileWriter myWriter = new FileWriter(path);
+                    myWriter.write("Persamaan regresi linear berganda yang diperoleh\ny = ");
+                    myWriter.write(Double.toString(res[0]));
+                    for (int i = 1; i < res.length; i++) {
+                        if (res[i] > 0) {
+                            myWriter.write(" + ");
+                        }
+                        myWriter.write(Double.toString(res[i]));
+                        myWriter.write("x");
+                        myWriter.write(Integer.toString(i));
                     }
-                    myWriter.write(Double.toString(res[i]));
-                    myWriter.write("x");
-                    myWriter.write(Integer.toString(i));
+                    // myWriter.write("\n");
+                    myWriter.write("\nNilai taksirannya adalah ");
+                    myWriter.write(Double.toString(result));
+                    myWriter.close();
+                    println("Berhasil menuliskan pada " + path);
+                    success = true;
+                } catch (IOException e) {
+                    println("Terjadi error.");
                 }
-                // myWriter.write("\n");
-                myWriter.write("\nNilai taksirannya adalah ");
-                myWriter.write(Double.toString(result));
-                myWriter.close();
-                println("Berhasil menuliskan pada " + path);
-            } catch (IOException e) {
-                println("Terjadi error.");
             }
         }
     }
