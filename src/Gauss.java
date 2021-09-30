@@ -138,7 +138,7 @@ public class Gauss extends Utils {
                 result[i] = "x" + (i + 1) + " = " + temp;
             }
         } else {
-            ParametricSolver.solve(mat, true);
+            result = ParametricSolver.solve(mat, true);
         }
 
         // Check result
