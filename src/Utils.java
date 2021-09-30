@@ -108,7 +108,7 @@ class Utils {
   }
 
   protected static boolean isZero(double x) {
-    double epsilon = 0.00000001;
+    double epsilon = 1.0e-12;
     return ((x < epsilon) && (x > -epsilon));
   }
 

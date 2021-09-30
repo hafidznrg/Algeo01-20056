@@ -37,7 +37,7 @@ public class GaussJordan extends Utils {
                 /* cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
                 if (isZero(matrix[k][k])) {
                     for (int i = k + 1; i < row; i++) {
-                        if (Math.abs(matrix[i][k]) > Math.abs(matrix[k][k])) {
+                        if (!isZero(matrix[i][k])) {
                             for (int j = 0; j < col; j++) {
                                 double temp = matrix[k][j];
                                 matrix[k][j] = matrix[i][j];
@@ -86,7 +86,7 @@ public class GaussJordan extends Utils {
                 /* cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
                 if (isZero(matrix[k][k])) {
                     for (int i = k + 1; i < row; i++) {
-                        if (Math.abs(matrix[i][k]) > Math.abs(matrix[k][k])) {
+                        if (!isZero(matrix[i][k])) {
                             for (int j = 0; j < col; j++) {
                                 double temp = matrix[k][j];
                                 matrix[k][j] = matrix[i][j];
@@ -140,7 +140,6 @@ public class GaussJordan extends Utils {
 
         // Cek apakah ada baris yang matrixnya nol dan hasilnya tidak nol
         if (isNoSolution(matrix)) {
-            println("Kondisi 1");
             String[] ret = { "Tidak ada solusi" };
             return ret;
         } else {
@@ -155,7 +154,6 @@ public class GaussJordan extends Utils {
                 return ParametricSolver.solve(afterCut, false);
             } else {
                 // CASE 3 : baris > kolom - 1
-                println("Kondisi 2");
                 String[] ret = { "Tidak ada solusi" };
                 return ret;
             }

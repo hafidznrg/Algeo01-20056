@@ -72,7 +72,7 @@ public class Gauss extends Utils {
                 /* cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
                 if (isZero(matrix[k][k])) {
                     for (int i = k + 1; i < row; i++) {
-                        if (Math.abs(matrix[i][k]) > Math.abs(matrix[k][k])) {
+                        if (!isZero(matrix[i][k])) {
                             for (int j = 0; j < col; j++) {
                                 double temp = matrix[k][j];
                                 matrix[k][j] = matrix[i][j];
