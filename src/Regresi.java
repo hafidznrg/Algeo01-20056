@@ -36,7 +36,9 @@ public class Regresi extends Menu {
         displayMat(spl);
 
         // Menyelesaikan matrix SPL dengan metode gauss jordan
-        double[][] res = GaussJordan.gaussJordan(spl, col + 1, col + 2);
+//        int newRow = col + 1;
+//        int newCol = col + 2;
+        double[][] res = GaussJordan.gaussJordan(spl);
         // println("Hasil gauss jordan");
         // displayMat(res);
 

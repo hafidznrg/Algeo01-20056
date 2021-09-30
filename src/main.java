@@ -47,12 +47,12 @@ class Main extends Menu {
           switch (choice) {
             case 1: // eliminasi Gauss
               resSPLMat = Gauss.gauss(mat);
-              result = Gauss.solve(resSPLMat);
+              result = Gauss.solveSPL(resSPLMat);
               break;
 
             case 2: // eliminasi Gauss-Jordan
-              resSPLMat = GaussJordan.gaussJordan(mat, mat.length, mat[0].length);
-              result = ParametricSolver.solve(resSPLMat, false);
+              resSPLMat = GaussJordan.gaussJordan(mat);
+              result = GaussJordan.solveSPL(resSPLMat);
               break;
 
             case 3: // Metode matriks balikan
@@ -154,7 +154,7 @@ class Main extends Menu {
           print("Masukkan nilai yang akan ditaksir : ");
           double nilai = sc.nextDouble();
           double taksiran = Interpolation.estimate(koef, nilai);
-          println("Nilai taksiran dari %f adalah ", nilai);
+          println("Nilai taksiran fungsi pada saat x = %f adalah ", nilai);
           println(taksiran);
           displayMenuOutput();
           choice = choose(1, 2);
