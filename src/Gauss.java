@@ -131,7 +131,7 @@ public class Gauss extends Utils {
         if (unique) {
             for (int i = rows - 1; i >= 0; i--) {
                 temp = mat[i][cols - 1];
-                for (int j = rows - 1; j > i; j--) {
+                for (int j = (cols - 2); j > i; j--) {
                     temp -= mat[i][j] * res[j];
                 }
                 res[i] = temp;
