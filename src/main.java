@@ -154,7 +154,7 @@ class Main extends Menu {
           print("Masukkan nilai yang akan ditaksir : ");
           double nilai = sc.nextDouble();
           double taksiran = Interpolation.estimate(koef, nilai);
-          println("Nilai taksiran dari %f adalah ", nilai);
+          println("Nilai taksiran fungsi pada saat x = %f adalah ", nilai);
           println(taksiran);
           displayMenuOutput();
           choice = choose(1, 2);
