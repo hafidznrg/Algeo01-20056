@@ -1,13 +1,13 @@
 class Main extends Menu {
   public static void main(String[] args) {
-    boolean running;
-    boolean mustSquare;
+    boolean running, mustSquare, success;
     int choice;
     double det;
     double[][] mat;
     // double[][] res;
 
     running = true;
+    success = false;
     while (running) {
       displayMainMenu();
       choice = choose(1, 6);
@@ -65,15 +65,15 @@ class Main extends Menu {
           }
           // res = SPL.calc(mat);
           // Check result
-          for (int i = 0; i < result.length; i++) {
-            println(result[i]);
-          }
+          displayResults(result);
           displayMenuOutput();
           choice = choose(1, 2);
           if (choice == 1) {
-            print("Masukkan path file yang dituju\n> ");
-            String path = sc.next();
-            FileReadWrite.writeFileSPL(path, result);
+            while (!success) {
+              print("Masukkan path file yang dituju\n> ");
+              String path = sc.next();
+              success = FileReadWrite.writeFileSPL(path, result);
+            }
           }
           // displayMat(mat);
           break;
@@ -96,9 +96,11 @@ class Main extends Menu {
           displayMenuOutput();
           choice = choose(1, 2);
           if (choice == 1) {
-            print("Masukkan path file yang dituju\n> ");
-            String path = sc.next();
-            FileReadWrite.writeFileDeterminan(path, mat, det);
+            while (!success) {
+              print("Masukkan path file yang dituju\n> ");
+              String path = sc.next();
+              success = FileReadWrite.writeFileDeterminan(path, mat, det);
+            }
           }
           break;
 
@@ -121,9 +123,11 @@ class Main extends Menu {
           displayMenuOutput();
           choice = choose(1, 2);
           if (choice == 1) {
-            print("Masukkan path file yang dituju\n> ");
-            String path = sc.next();
-            FileReadWrite.writeFileInverse(path, mat, inv);
+            while (!success) {
+              print("Masukkan path file yang dituju\n> ");
+              String path = sc.next();
+              success = FileReadWrite.writeFileInverse(path, mat, inv);
+            }
           }
           break;
 
@@ -140,9 +144,11 @@ class Main extends Menu {
           displayMenuOutput();
           choice = choose(1, 2);
           if (choice == 1) {
-            print("Masukkan path file yang dituju\n> ");
-            String path = sc.next();
-            FileReadWrite.writeFileInterpolasi(path, koef, nilai, taksiran);
+            while (!success) {
+              print("Masukkan path file yang dituju\n> ");
+              String path = sc.next();
+              success = FileReadWrite.writeFileInterpolasi(path, koef, nilai, taksiran);
+            }
           }
           break;
 
