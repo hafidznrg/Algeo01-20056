@@ -27,7 +27,7 @@ public class Gauss extends Utils {
         if (col <= row) {
             for (int k = 0; k < col - 1; k++) {
                 /* cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
-                if (Math.abs(matrix[k][k]) < 1.0e-12) {
+                if (isZero(matrix[k][k])) {
                     for (int i = k + 1; i < row; i++) {
                         if (Math.abs(matrix[i][k]) > Math.abs(matrix[k][k])) {
                             for (int j = 0; j < col; j++) {
