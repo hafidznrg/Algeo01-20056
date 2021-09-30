@@ -7,8 +7,8 @@ class Main extends Menu {
     // double[][] res;
 
     running = true;
-    success = false;
     while (running) {
+      success = false;
       displayMainMenu();
       choice = choose(1, 6);
       switch (choice) {
@@ -72,7 +72,7 @@ class Main extends Menu {
             while (!success) {
               print("Masukkan path file yang dituju\n> ");
               String path = sc.next();
-              success = FileReadWrite.writeFileSPL(path, result);
+              success = FileReadWrite.writeFileSPL("../test/" + path, result);
             }
           }
           // displayMat(mat);
@@ -99,7 +99,7 @@ class Main extends Menu {
             while (!success) {
               print("Masukkan path file yang dituju\n> ");
               String path = sc.next();
-              success = FileReadWrite.writeFileDeterminan(path, mat, det);
+              success = FileReadWrite.writeFileDeterminan("../test/" + path, mat, det);
             }
           }
           break;
@@ -109,24 +109,39 @@ class Main extends Menu {
           choice = choose(1, 2);
           mustSquare = true;
           mat = createMatrix(mustSquare);
-          // CALL INVERSE
-          double[][] inv = new double[mat.length][mat[0].length];
-          if (choice == 1) { // Eliminasi Gauss-Jordan
-            inv = Inverse.gaussJordanMethods(mat);
-          } else { // Metode cofactor
-            inv = Inverse.cofactorMethods(mat);
-          }
-          println("Inverse dari matriks");
-          displayMat(mat);
-          println("adalah");
-          displayMat(inv);
-          displayMenuOutput();
-          choice = choose(1, 2);
-          if (choice == 1) {
-            while (!success) {
-              print("Masukkan path file yang dituju\n> ");
-              String path = sc.next();
-              success = FileReadWrite.writeFileInverse(path, mat, inv);
+          if (isZero(Cofactor.determinan(mat))) {
+            println("Matriks: ");
+            displayMat(mat);
+            println("\nTidak memiliki inverse karena determinannya 0");
+            displayMenuOutput();
+            choice = choose(1, 2);
+            if (choice == 1) {
+              while (!success) {
+                print("Masukkan path file yang dituju\n> ");
+                String path = sc.next();
+                success = FileReadWrite.writeFileNoInverse("../test/" + path, mat);
+              }
+            }
+          } else {
+            // CALL INVERSE
+            double[][] inv = new double[mat.length][mat[0].length];
+            if (choice == 1) { // Eliminasi Gauss-Jordan
+              inv = Inverse.gaussJordanMethods(mat);
+            } else { // Metode cofactor
+              inv = Inverse.cofactorMethods(mat);
+            }
+            println("Inverse dari matriks");
+            displayMat(mat);
+            println("adalah");
+            displayMat(inv);
+            displayMenuOutput();
+            choice = choose(1, 2);
+            if (choice == 1) {
+              while (!success) {
+                print("Masukkan path file yang dituju\n> ");
+                String path = sc.next();
+                success = FileReadWrite.writeFileInverse("../test/" + path, mat, inv);
+              }
             }
           }
           break;
@@ -147,7 +162,7 @@ class Main extends Menu {
             while (!success) {
               print("Masukkan path file yang dituju\n> ");
               String path = sc.next();
-              success = FileReadWrite.writeFileInterpolasi(path, koef, nilai, taksiran);
+              success = FileReadWrite.writeFileInterpolasi("../test/" + path, koef, nilai, taksiran);
             }
           }
           break;
