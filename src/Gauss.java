@@ -81,7 +81,7 @@ public class Gauss extends Utils {
 
                 // melakukan pembagian pada baris pivot
                 double pivot = matrix[k][k];
-                if (Math.abs(pivot) < 1.0e-12) {
+                if (isZero(pivot)) {
                     continue;
                 } else {
                     for (int j = k; j < col; j++) {
