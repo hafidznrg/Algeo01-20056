@@ -18,12 +18,27 @@ class Main extends Menu {
           mustSquare = false;
           mat = createMatrix(mustSquare);
           // displayMat(mat);
+          double detM = 0;
+          if (mat.length == mat[0].length - 1) {
+            detM = Cofactor.determinan(mat);
+          }
+          while (true) {
+            if (choice == 1 || choice == 2 || !isZero(detM)) {
+              break;
+            } else {
+              println("Tidak bisa menyelesaikan SPL dengan cara ini.\nSilakan menggunakan cara lain");
+              displayMenuSPL();
+              choice = choose(1, 4);
+            }
+          }
 
           // CALL SPL CLASS
           String[] result = new String[mat[0].length];
           switch (choice) {
             case 1: // eliminasi Gauss
-
+              double[][] matRes = new double[mat.length][mat[0].length];
+              matRes = Gauss.gauss(mat);
+              result = Gauss.solve(matRes);
               break;
 
             case 2: // eliminasi Gauss-Jordan
@@ -35,13 +50,22 @@ class Main extends Menu {
               break;
 
             case 4: // Kaidah Cramer
-
+              result = Cramer.cramerRule(mat);
               break;
           }
           // res = SPL.calc(mat);
+          // Check result
+          for (int i = 0; i < result.length; i++) {
+            println(result[i]);
+          }
           displayMenuOutput();
           choice = choose(1, 2);
-          displayMat(mat);
+          if (choice == 1) {
+            print("Masukkan path file yang dituju\n> ");
+            String path = sc.next();
+            FileReadWrite.writeFileSPL(path, result);
+          }
+          // displayMat(mat);
           break;
 
         case 2:
@@ -99,7 +123,7 @@ class Main extends Menu {
           mustSquare = false;
           mat = createMatrix(mustSquare);
           // CALL INTERPOLASI POLINOM
-          double[] koef = Interpolation.polynomial(mat, mat.length - 1);
+          double[] koef = Interpolation.polynomial(mat);
           print("Masukkan nilai yang akan ditaksir : ");
           double nilai = sc.nextDouble();
           double taksiran = Interpolation.estimate(koef, nilai);
