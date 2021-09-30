@@ -119,7 +119,7 @@ public class Gauss extends Utils {
         else {
             int i = 0;
             while (unique && i < rows) {
-                if (mat[i][i] != 1)
+                if (!isZero(mat[i][i] - 1))
                     unique = false;
                 i++;
             }
