@@ -14,17 +14,6 @@ public class Interpolation extends Utils {
         println(result);
     }
 
-    public static void printMatrix(double[][] Matrix) {
-        int row = Matrix.length;
-        int col = Matrix[0].length;
-        for (int i = 0; i < row; i++) {
-            for (int j = 0; j < col; j++) {
-                print(Matrix[i][j] + " ");
-            }
-            println();
-        }
-    }
-
     public static double estimate(double[] koef, double x) {
         int row = koef.length;
         double res = 0;

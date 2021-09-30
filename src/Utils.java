@@ -32,6 +32,7 @@ class Utils {
       println();
     }
   }
+
   protected static void displayResults(String[] result) {
     for (int i = 0; i < result.length; i++) {
       println(result[i]);
@@ -105,9 +106,10 @@ class Utils {
     }
     return newMat;
   }
+
   protected static boolean isZero(double x) {
     double epsilon = 0.00000001;
-    return ((x < epsilon) && (x > - epsilon));
+    return ((x < epsilon) && (x > -epsilon));
   }
 
   protected static double[][] squareMatFromAugmented(double[][] mat) {
@@ -115,12 +117,65 @@ class Utils {
     int cols = mat[0].length;
     double[][] newMat = new double[rows][rows];
 
-    for (int i=0;i<rows;i++) {
-      for (int j=0;j<rows;j++) {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < rows; j++) {
         newMat[i][j] = mat[i][j];
       }
     }
     return newMat;
+  }
+
+  protected static boolean isRowAllZero(double[] matRow) {
+    for (int i = 0; i < matRow.length; i++) {
+      if (!isZero(matRow[i]))
+        return false;
+    }
+    return true;
+  }
+
+  protected static double[][] createMatEff(double[][] oriMat) {
+    int countRowAllZero = 0;
+    for (int i = 0; i < oriMat.length; i++) {
+      if (isRowAllZero(oriMat[i])) {
+        countRowAllZero++;
+      }
+    }
+    if (countRowAllZero == 0) {
+      return oriMat;
+    } else {
+      int rowEff = oriMat.length - countRowAllZero;
+      int colEff = oriMat[0].length;
+      double[][] newMat = new double[rowEff][colEff];
+
+      for (int i = 0; i < rowEff; i++) {
+        for (int j = 0; j < colEff; j++) {
+          newMat[i][j] = oriMat[i][j];
+        }
+      }
+      return newMat;
+    }
+  }
+
+  protected static boolean isRowAllZeroExceptLastElmt(double[] matRow) {
+    for (int i = 0; i < matRow.length - 1; i++) {
+      if (!isZero(matRow[i])) {
+        return false;
+      }
+    }
+    if (!isZero(matRow[matRow.length - 1])) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  protected static boolean isNoSolution(double[][] mat) {
+    for (int i = 0; i < mat.length; i++) {
+      if (isRowAllZeroExceptLastElmt(mat[i])) {
+        return true;
+      }
+    }
+    return false;
   }
 
   // TESTER

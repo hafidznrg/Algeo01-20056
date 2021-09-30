@@ -47,12 +47,12 @@ class Main extends Menu {
           switch (choice) {
             case 1: // eliminasi Gauss
               resSPLMat = Gauss.gauss(mat);
-              result = Gauss.solve(resSPLMat);
+              result = Gauss.solveSPL(resSPLMat);
               break;
 
             case 2: // eliminasi Gauss-Jordan
               resSPLMat = GaussJordan.gaussJordan(mat);
-              result = ParametricSolver.solve(resSPLMat, false);
+              result = GaussJordan.solveSPL(resSPLMat);
               break;
 
             case 3: // Metode matriks balikan
