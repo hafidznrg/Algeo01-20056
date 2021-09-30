@@ -3,6 +3,7 @@ class Main extends Menu {
     boolean running;
     boolean mustSquare;
     int choice;
+    double det;
     double[][] mat;
     // double[][] res;
 
@@ -12,9 +13,6 @@ class Main extends Menu {
       choice = choose(1, 6);
       switch (choice) {
         case 1:
-          displayMenuSPL();
-          choice = choose(1, 4);
-          // println("pilihan 1:" + choice);
           mustSquare = false;
           mat = createMatrix(mustSquare);
           // displayMat(mat);
@@ -34,19 +32,31 @@ class Main extends Menu {
 
           // CALL SPL CLASS
           String[] result = new String[mat[0].length];
+          double[][] resSPLMat;
+          det = Cofactor.determinan(mat);
+          while (true) {
+            displayMenuSPL();
+            choice = choose(1, 4);
+            if (choice == 1 || choice == 2 || !isZero(det))
+              break;
+            else {
+              println("Tidak dapat diselesaikan dengan metode " + ((choice == 3) ? "matriks balikan" : "cramer"));
+              println("Silakan pilih metode lain\n");
+            }
+          }
           switch (choice) {
             case 1: // eliminasi Gauss
-              double[][] matRes = new double[mat.length][mat[0].length];
-              matRes = Gauss.gauss(mat);
-              result = Gauss.solve(matRes);
+              resSPLMat = Gauss.gauss(mat);
+              result = Gauss.solve(resSPLMat);
               break;
 
             case 2: // eliminasi Gauss-Jordan
-
+              resSPLMat = GaussJordan.gaussJordan(mat, mat.length, mat[0].length);
+              result = ParametricSolver.solve(resSPLMat, false);
               break;
 
             case 3: // Metode matriks balikan
-
+              result = Inverse.solveSPL(mat);
               break;
 
             case 4: // Kaidah Cramer
@@ -71,11 +81,9 @@ class Main extends Menu {
         case 2:
           displayMenuDet();
           choice = choose(1, 2);
-          // println("pilihan 2:" + choice);
           mustSquare = true;
           mat = createMatrix(mustSquare);
           // CALL DETERMINANT CLASS
-          double det;
           if (choice == 1) {
             det = GaussTriangle.determinan(mat, mat.length, mat[0].length);
           } else {

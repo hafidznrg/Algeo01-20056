@@ -32,6 +32,11 @@ class Utils {
       println();
     }
   }
+  protected static void displayResults(String[] result) {
+    for (int i = 0; i < result.length; i++) {
+      println(result[i]);
+    }
+  }
 
   protected static int choose(int min, int max) {
     int input;
