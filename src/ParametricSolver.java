@@ -42,7 +42,7 @@ class ParametricSolver extends Utils {
     int cols = mat[0].length;
 
     if (fromGauss) {
-      mat = GaussJordan.gaussJordan(mat, mat.length, mat[0].length);
+      mat = GaussJordan.gaussJordan(mat);
     }
     
     int i,count=0;

@@ -51,7 +51,7 @@ class Main extends Menu {
               break;
 
             case 2: // eliminasi Gauss-Jordan
-              resSPLMat = GaussJordan.gaussJordan(mat, mat.length, mat[0].length);
+              resSPLMat = GaussJordan.gaussJordan(mat);
               result = ParametricSolver.solve(resSPLMat, false);
               break;
 

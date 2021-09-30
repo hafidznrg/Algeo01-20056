@@ -54,7 +54,7 @@ public class Interpolation extends Utils {
         }
         // printMatrix(matrixPolynom);
         // spl
-        double[][] newMatrix = GaussJordan.gaussJordan(matrixPolynom, matrixPolynom.length, matrixPolynom[0].length);
+        double[][] newMatrix = GaussJordan.gaussJordan(matrixPolynom);
         // dalam bentuk ax = b
         // menyalin matrix b ke dalam array
         double[] b = new double[row];
