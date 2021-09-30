@@ -105,6 +105,19 @@ class Utils {
     return ((x < epsilon) && (x > - epsilon));
   }
 
+  protected static double[][] squareMatFromAugmented(double[][] mat) {
+    int rows = mat.length;
+    int cols = mat[0].length;
+    double[][] newMat = new double[rows][rows];
+
+    for (int i=0;i<rows;i++) {
+      for (int j=0;j<rows;j++) {
+        newMat[i][j] = mat[i][j];
+      }
+    }
+    return newMat;
+  }
+
   // TESTER
   public static void main(String[] args) {
     println("Hello " + 5 + " mabar");

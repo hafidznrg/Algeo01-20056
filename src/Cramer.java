@@ -22,6 +22,7 @@ public class Cramer extends Utils {
 
         int row = matrix.length;
         int col = matrix[0].length;
+        double[][] squareMat = squareMatFromAugmented(matrix);
         String[] result = new String[col-1];
 
         //model Ax = b
@@ -51,7 +52,7 @@ public class Cramer extends Utils {
             int xNow = k+1;
             //menghitung nilai x[xNow] = determinan(A[k])/determinan(matrix origin)
             // Not yet solve
-            double x = Cofactor.determinan(a)/Cofactor.determinan(matrix);
+            double x = Cofactor.determinan(a)/Cofactor.determinan(squareMat);
             //System.out.println(x);
             result[k] = "Nilai X"+xNow+": "+x;
             // println("Nilai X"+xNow+": "+x);
