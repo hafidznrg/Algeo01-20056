@@ -1,0 +1,7 @@
+Nilai X1: 0.5
+Nilai X2: 0.0
+Nilai X3: 0.0
+Nilai X4: 0.5
+Nilai X5: 0.5
+Nilai X6: 0.5
+
