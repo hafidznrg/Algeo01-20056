@@ -98,7 +98,7 @@ class Menu extends Utils {
     double[][] mat;
 
     while (true) {
-      fileName = inputFileName();
+      fileName = "../test/" + inputFileName();
       rowsCols = FileReadWrite.calcRowsCols(fileName);
       if (mustSquare && (rowsCols[0] != rowsCols[1])) {
         println("Matriks dalam file tidak berbentuk persegi");
@@ -126,6 +126,6 @@ class Menu extends Utils {
       fileName = inputFileName();
     }
 
-    return ("../test/" + fileName);
+    return fileName;
   }
 }

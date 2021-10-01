@@ -1,19 +1,13 @@
-class ParametricSolver extends Utils {
-  public static void main(String[] args) {
-    // double[][] mat = {{1, 2, 0, 0, 5},{0, 0, 1, 0, 9},{0, 0, 0, 1, 3}};
-    double[][] mat = {{1, 0, 5, 0, 9, 1},{0, 1, 7, 0, 4, -9},{0, 0, 0, 1, 1, 3}};
-    displayResults(solve(mat,false));
-  }
-  
+class ParametricSolver extends Utils {  
   private static int idxEselon1(double[][] mat, int colMat) {
     int i, idx;
     boolean onlyOnce=true;
 
     idx = -1;
     for (i=0;i<mat.length;i++) {
-      if (mat[i][colMat] != 0 && mat[i][colMat] != 1)
+      if ((!isZero(mat[i][colMat])) && (!isZero(mat[i][colMat] - 1)))
         return -1;
-      if (mat[i][colMat] == 1){
+      if (isZero(mat[i][colMat] - 1)){
         if (onlyOnce) {
           idx = i;
           onlyOnce = false;

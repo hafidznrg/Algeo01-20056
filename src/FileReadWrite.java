@@ -196,23 +196,4 @@ class FileReadWrite extends Utils {
       return false;
     }
   }
-
-  // TESTER
-  public static void main(String[] args) {
-    int[] rowsCols = calcRowsCols("test/test.txt");
-    double[][] mat = readFile("test/test.txt", rowsCols[0], rowsCols[1]);
-
-    displayMat(mat);
-
-    boolean success = false;
-    while (!success) {
-      success = writeFile("new/output.txt", mat);
-      if (success)
-        break;
-      else {
-        success = writeFile("test/lala.txt", mat);
-      }
-    }
-    println("test");
-  }
 }

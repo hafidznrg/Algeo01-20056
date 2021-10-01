@@ -1,13 +1,4 @@
 class Inverse extends Utils {
-  public static void main(String[] args) {
-    double[][] mat = {{1,2,5},{4,2,5},{3,9,8}};
-    // println("Inverse Cofactor: ");
-    // displayMat(cofactorMethods(mat));
-
-    println("Inverse GJ: ");
-    displayMat(gaussJordanMethods(mat));
-    // displayMat(mat);
-  }
   public static double[][] cofactorMethods(double[][] mat) {
     double det = Cofactor.determinan(mat);
     double[][] cofactorMat = Cofactor.cofactorMat(mat);

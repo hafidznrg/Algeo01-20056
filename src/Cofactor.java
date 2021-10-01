@@ -1,15 +1,4 @@
 public class Cofactor extends Utils{
-
-    public static void main(String[] args) {
-        double[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-        displayMat(matrix);
-        double det = determinan(matrix);
-        println("Determinan : " + det);
-        println("Matriks kofaktornya adalah : ");
-        double[][] baru = cofactorMat(matrix);
-        displayMat(baru);
-    }
-
     public static double[][] calculateOne(double[][] matrix, int row, int col) {
         int n = matrix.length;
         double[][] newMatrix = new double[n-1][n-1];

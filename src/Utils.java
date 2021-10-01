@@ -177,40 +177,4 @@ class Utils {
     }
     return false;
   }
-
-  // TESTER
-  public static void main(String[] args) {
-    println("Hello " + 5 + " mabar");
-    println("Test %d", 5);
-    double[][] mat = new double[2][3];
-
-    mat[0][0] = 1;
-    mat[0][1] = 2;
-    mat[0][2] = 3;
-    mat[1][0] = 4;
-    mat[1][1] = 5;
-    mat[1][2] = 6;
-
-    double[][] transposed = transpose(mat);
-
-    println("Ori Mat");
-    displayMat(mat);
-    println("transposed mat");
-    displayMat(transposed);
-
-    if (isSquare(mat)) {
-      println("Mat is square");
-    }
-    int input = choose(2, 5);
-
-    println("pilihan: " + input);
-  }
 }
-
-// print (output without newline)
-// printLn (output with newline)
-// displayMat (display matrix)
-// choose (ask input integer from user in bound of min and max)
-// isSquare (check whether matrix is nxn)
-// scan (ask for input user, make scanner object only in utils class)
-// So on (later)

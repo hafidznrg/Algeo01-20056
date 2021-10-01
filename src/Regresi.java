@@ -82,7 +82,6 @@ public class Regresi extends Menu {
                 }
                 y[i] = raw[i][raw[0].length - 1];
             }
-
         }
 
         // Menyelesaikan regresi linear berganda
@@ -141,10 +140,5 @@ public class Regresi extends Menu {
                 }
             }
         }
-    }
-
-
-    public static void main(String[] args) {
-        driverRegresi();
     }
 }
