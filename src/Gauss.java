@@ -41,11 +41,21 @@ public class Gauss extends Utils {
         int col = matrix[0].length;
         /* jika ukuran colom <= baris */
         if (col <= row) {
+            int pivotCol = 0;
             for (int k = 0; k < col - 1; k++) {
+                //jika sudah sampai kolom terakhir maka hentikan proses
+                if (pivotCol == col-1){
+                    break;
+                }
+                //cek apakah kolo bernilai 0, apabila 0 maka geser pivot ke kolom kanannya
+                while (isAllZero(matrix, pivotCol) && (pivotCol < col)){
+                    pivotCol++;
+                }
+                double pivot = matrix[k][pivotCol];
                 /* cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
-                if (isZero(matrix[k][k])) {
+                if (isZero(pivot)) {
                     for (int i = k + 1; i < row; i++) {
-                        if (!isZero(matrix[i][k])) {
+                        if (!isZero(matrix[i][pivotCol])) {
                             for (int j = 0; j < col; j++) {
                                 double temp = matrix[k][j];
                                 matrix[k][j] = matrix[i][j];
@@ -56,40 +66,39 @@ public class Gauss extends Utils {
                     }
                 }
                 // melakukan pembagian pada baris pivot
-                double pivot = matrix[k][k];
+                pivot = matrix[k][pivotCol];
                 if (isZero(pivot)) {
                     continue;
                 } else {
-                    for (int j = k; j < col; j++) {
+                    for (int j = pivotCol; j < col; j++) {
                         matrix[k][j] = matrix[k][j] / pivot;
                     }
 
                     // melakukan eliminasi pada baris bawah dan atasnya agar bernilai = 0
                     for (int i = k + 1; i < row; i++) {
-                        if (isZero(matrix[i][k])) {
+                        if (isZero(matrix[i][pivotCol])) {
                             continue;
                         }
-                        double factor = matrix[i][k];
-                        for (int j = k; j < col; j++) {
+                        double factor = matrix[i][pivotCol];
+                        for (int j = pivotCol; j < col; j++) {
                             matrix[i][j] = (matrix[i][j] - (factor * matrix[k][j]));
                         }
                     }
 
                 }
+                pivotCol++;
 
             }
 
         } else {
             int pivotCol = 0;
             for (int k = 0; k < row; k++) {
-                //cek apakah kolom bernilai 0
-                boolean allZero = true;
-                for (int i = 0; i < row; i++){
-                    if (!isZero(matrix[i][pivotCol])){
-                        allZero = false;
-                    }
+                //jika sudag sampai kolom terakhir maka hentikan proses
+                if (pivotCol == col-1){
+                    break;
                 }
-                if (allZero){
+                //cek apakah kolom bernilai 0
+                while (isAllZero(matrix, pivotCol) && (pivotCol < col)){
                     pivotCol++;
                 }
                 double pivot = matrix[k][pivotCol];
@@ -134,6 +143,16 @@ public class Gauss extends Utils {
         }
 
         return matrix;
+    }
+
+    public static boolean isAllZero(double[][] matrix, int pivotCol){
+        boolean allZero = true;
+        for (int i = 0; i < matrix.length; i++){
+            if (!isZero(matrix[i][pivotCol])){
+                allZero = false;
+            }
+        }
+        return  allZero;
     }
 
     // Solver

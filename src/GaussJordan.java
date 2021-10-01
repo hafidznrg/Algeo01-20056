@@ -12,18 +12,18 @@ public class GaussJordan extends Utils {
         // double[][] matrix = { { 1.00, 2.00, 3.00 }, { 0.00, -3.00, -6.00 }, { 0.00,
         // -6.00, -12.00 },
         // { 4.00, 3.00, 2.00 } };
-        double[][] matrix = { { 1.00, 2.00, 3.00, 7 }, { 0, 1.00, 4.00, 10 }, { 0, 0, 1.00, 5 } };
+        //double[][] matrix = { { 1.00, 2.00, 3.00, 7 }, { 0, 1.00, 4.00, 10 }, { 0, 0, 1.00, 5 } };
         // printMatrix(matrix, 4, 3);
-//         Scanner sc = new Scanner(System.in);
-//         double[][] matrix = new double[3][7];
-//        int rowMat = matrix.length;
-//        int colMat = matrix[0].length;
-//         for (int i = 0; i < rowMat; i++){
-//            for (int j = 0; j < colMat; j++) {
-//                matrix[i][j] = sc.nextDouble();
-//            }
-//         }
-//         sc.close();
+         Scanner sc = new Scanner(System.in);
+         double[][] matrix = new double[3][5];
+        int rowMat = matrix.length;
+        int colMat = matrix[0].length;
+         for (int i = 0; i < rowMat; i++){
+            for (int j = 0; j < colMat; j++) {
+                matrix[i][j] = sc.nextDouble();
+            }
+         }
+         sc.close();
          System.out.println("Matriks eselon barisnya adalah : ");
          double[][] baru = gaussJordan(matrix);
          displayMat(baru);
@@ -35,11 +35,22 @@ public class GaussJordan extends Utils {
         int col = matrix[0].length;
         /* untuk colom <= baris */
         if (col <= row) {
+            int pivotCol = 0;
             for (int k = 0; k < col - 1; k++) {
+                //jika sudah sampai kolom terakhir maka hentikan proses
+                if (pivotCol == col-1){
+                    break;
+                }
+                //cek apakah kolo bernilai 0, apabila 0 maka geser pivot ke kolom kanannya
+                while (isAllZero(matrix, pivotCol) && (pivotCol < col)){
+                    pivotCol++;
+                }
+                double pivot = matrix[k][pivotCol];
+                //System.out.println("sekarang pivot baris "+k+" kolom "+ pivotCol);
                 /* cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
-                if (isZero(matrix[k][k])) {
+                if (isZero(pivot)) {
                     for (int i = k + 1; i < row; i++) {
-                        if (!isZero(matrix[i][k])) {
+                        if (!isZero(matrix[i][pivotCol])) {
                             for (int j = 0; j < col; j++) {
                                 double temp = matrix[k][j];
                                 matrix[k][j] = matrix[i][j];
@@ -52,12 +63,12 @@ public class GaussJordan extends Utils {
                 // System.out.println("matrix setelah ditukar");
                 // printMatrix(matrix, 3, 3);
                 // melakukan pembagian pada baris pivot
-                double pivot = matrix[k][k];
+                pivot = matrix[k][pivotCol];
                 if (isZero(pivot)) {
                     continue;
                 } else {
                     // System.out.println("ini pivot " + pivot);
-                    for (int j = k; j < col; j++) {
+                    for (int j = pivotCol; j < col; j++) {
                         matrix[k][j] = matrix[k][j] / pivot;
                     }
                     // System.out.println("matrix setelah dibagi pivot");
@@ -66,12 +77,12 @@ public class GaussJordan extends Utils {
 
                     // melakukan eliminasi pada baris bawah dan atasnya agar bernilai = 0
                     for (int i = 0; i < row; i++) {
-                        if ((i == k) || matrix[i][k] == 0) {
+                        if ((i == k) || matrix[i][pivotCol] == 0) {
                             continue;
                         }
-                        double factor = matrix[i][k];
+                        double factor = matrix[i][pivotCol];
                         // System.out.println("ini faktornya "+factor);
-                        for (int j = k; j < col; j++) {
+                        for (int j = pivotCol; j < col; j++) {
                             matrix[i][j] = (matrix[i][j] - (factor * matrix[k][j]));
                             // System.out.println("matix setelah dikurangi faktor "+matrix[i][j]);
                         }
@@ -79,6 +90,7 @@ public class GaussJordan extends Utils {
                     // System.out.println("matrix setelah dieliminasi");
                     // printMatrix(matrix, 3, 3);
                 }
+                pivotCol++;
 
             }
 
@@ -86,15 +98,13 @@ public class GaussJordan extends Utils {
             // untuk kolom > baris
             int pivotCol = 0;
             for (int k = 0; k < row; k++) {
-                //cek apakah kolom bernilai 0
-                boolean allZero = true;
-                for (int i = 0; i < row; i++) {
-                    if (!isZero(matrix[i][pivotCol])) {
-                        allZero = false;
-                    }
+                //jika sudah sampai kolom terakhir maka hentikan proses
+                if (pivotCol == col-1){
+                    break;
                 }
+                //cek apakah kolom bernilai 0
                 //jika 0 maka pivot bergeser ke kolom sebelah kanan-nya
-                if (allZero) {
+                while (isAllZero(matrix, pivotCol) && (pivotCol < col)){
                     pivotCol++;
                 }
                 double pivot = matrix[k][pivotCol];
@@ -148,6 +158,16 @@ public class GaussJordan extends Utils {
         }
 
         return matrix;
+    }
+
+    public static boolean isAllZero(double[][] matrix, int pivotCol){
+        boolean allZero = true;
+        for (int i = 0; i < matrix.length; i++){
+            if (!isZero(matrix[i][pivotCol])){
+                allZero = false;
+            }
+        }
+        return  allZero;
     }
 
     public static String[] solveSPL(double[][] matrix) {
