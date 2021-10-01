@@ -181,7 +181,11 @@ public class GaussJordan extends Utils {
         } else {
             double[][] afterCut = createMatEff(matrix);
             rows = afterCut.length;
-            cols = afterCut[0].length;
+            try {
+                cols = afterCut[0].length;
+            } catch (ArrayIndexOutOfBoundsException err) {
+                cols = 0;
+            }
             if (rows == (cols - 1)) {
                 // CASE 1 : baris == kolom -1
                 return solveSPLCase1(afterCut);
