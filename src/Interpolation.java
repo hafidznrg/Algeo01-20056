@@ -1,5 +1,7 @@
 public class Interpolation extends Utils {
     public static double estimate(double[] koef, double x) {
+        // Mengembalikan hasil estimasi dari input x
+
         int row = koef.length;
         double res = 0;
 
@@ -11,6 +13,8 @@ public class Interpolation extends Utils {
     }
 
     public static double[] polynomial(double[][] matrix) {
+        // Mengembalikan koefisien dari persamaan polinomial hasil interpolasi
+
         int row = matrix.length;
         int col = matrix.length + 1;
         double[][] matrixPolynom = new double[row][col];

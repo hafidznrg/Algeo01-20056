@@ -4,7 +4,6 @@ class Main extends Menu {
     int choice;
     double det;
     double[][] mat;
-    // double[][] res;
 
     running = true;
     while (running) {
@@ -12,10 +11,9 @@ class Main extends Menu {
       displayMainMenu();
       choice = choose(1, 6);
       switch (choice) {
-        case 1:
+        case 1: // Sistem Persamaan Linear
           mustSquare = false;
           mat = createMatrix(mustSquare);
-          // displayMat(mat);
           String[] result = new String[mat[0].length];
           double[][] resSPLMat;
           double detM = 0;
@@ -54,7 +52,6 @@ class Main extends Menu {
               result = Cramer.cramerRule(mat);
               break;
           }
-          // res = SPL.calc(mat);
           // Check result
           displayResults(result);
           displayMenuOutput();
@@ -66,10 +63,9 @@ class Main extends Menu {
               success = FileReadWrite.writeFileSPL("../test/" + path, result);
             }
           }
-          // displayMat(mat);
           break;
 
-        case 2:
+        case 2:// Kalkulasi Determinan
           displayMenuDet();
           choice = choose(1, 2);
           mustSquare = true;
@@ -95,7 +91,7 @@ class Main extends Menu {
           }
           break;
 
-        case 3:
+        case 3: // Matriks Balikan
           displayMenuInverse();
           choice = choose(1, 2);
           mustSquare = true;
@@ -137,7 +133,7 @@ class Main extends Menu {
           }
           break;
 
-        case 4:
+        case 4:// Interpolasi Polinomial
           mustSquare = false;
           mat = createMatrix(mustSquare);
           // CALL INTERPOLASI POLINOM
@@ -158,11 +154,11 @@ class Main extends Menu {
           }
           break;
 
-        case 5:
+        case 5: // Multi linear regresi
           Regresi.driverRegresi();
           break;
 
-        default:
+        default: // Keluar
           println("Thank youu ^_^");
           running = false;
           break;

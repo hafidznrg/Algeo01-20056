@@ -2,6 +2,7 @@ import java.io.*;
 
 class Menu extends Utils {
   protected static void displayMainMenu() {
+    // Menuliskan daftar main menu
     println("Main Menu");
     println("1. Sistem Persamaan Linear");
     println("2. Determinan");
@@ -12,6 +13,7 @@ class Menu extends Utils {
   }
 
   protected static void displayMenuSPL() {
+    // Menuliskan daftar menu SPL
     println("Menu Sistem Persamaan Linear");
     println("1. Metode eliminasi Gauss");
     println("2. Metode eliminasi Gauss-Jordan");
@@ -20,30 +22,35 @@ class Menu extends Utils {
   }
 
   protected static void displayMenuDet() {
+    // Menuliskan daftar menu Determinan
     println("Menu Determinan");
     println("1. Metode eliminasi Gauss");
     println("2. Metode ekspansi kofaktor");
   }
 
   protected static void displayMenuInverse() {
+    // Menuliskan daftar menu matriks balikan
     println("Menu Inverse");
     println("1. Metode eliminasi Gauss-Jordan");
     println("2. Metode matriks kofaktor");
   }
 
   protected static void displayMenuData() {
+    // Menuliskan daftar menu masukan data
     println("Menu Input Data Matriks");
     println("1. Input Keyboard");
     println("2. Input File");
   }
 
   protected static void displayMenuOutput() {
+    // Menuliskan daftar menu output
     println("Apakah Anda ingin menyimpan hasil ini ke dalam file?");
     println("1. Ya");
     println("2. Tidak");
   }
 
   protected static double[][] createMatrix(boolean mustSquare) {
+    // Mengembalikan matriks input
     double[][] mat;
 
     displayMenuData();
@@ -57,6 +64,7 @@ class Menu extends Utils {
   }
 
   private static double[][] inputMatrixKeyboard(boolean mustSquare) {
+    // Mengembalikan matriks input dari keyboard
     int rows, cols;
     double[][] mat;
 
@@ -93,6 +101,7 @@ class Menu extends Utils {
   }
 
   protected static double[][] inputMatrixFile(boolean mustSquare) {
+    // Mengembalikan matriks input dari file
     String fileName;
     int[] rowsCols;
     double[][] mat;
@@ -112,6 +121,7 @@ class Menu extends Utils {
   }
 
   protected static String inputFileName() {
+    // Mengembalikan path file input yang telah divalidasi
     String fileName;
     // To check whether the file is exist or not
     FileReader fr = null;

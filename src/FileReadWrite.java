@@ -3,6 +3,7 @@ import java.util.*;
 
 class FileReadWrite extends Utils {
   public static int[] calcRowsCols(String fileName) {
+    // Menghitung jumlah baris dan kolom dari matriks input file
     FileReader fr = null;
     try {
       fr = new FileReader(fileName);
@@ -33,6 +34,7 @@ class FileReadWrite extends Utils {
   }
 
   public static double[][] readFile(String fileName, int rows, int cols) {
+    // Membaca file input dan mengembalikan matriks bacaan
     double[][] mat = new double[rows][cols];
 
     println("Mencoba membaca file: " + fileName);
@@ -56,6 +58,7 @@ class FileReadWrite extends Utils {
   }
 
   public static boolean writeFile(String path, double[][] mat) {
+    // Menuliskan matriks ke dalam file
     try {
       FileWriter myWriter = new FileWriter(path);
       for (int i = 0; i < mat.length; i++) {
@@ -76,12 +79,14 @@ class FileReadWrite extends Utils {
   }
 
   public static boolean writeFileSPL(String path, String[] res) {
+    // Menuliskan hasil SPL ke file
     try {
       FileWriter myWriter = new FileWriter(path);
       for (int i = 0; i < res.length; i++) {
         myWriter.write(res[i] + "\n");
       }
       // Add End Of File (new line)
+      myWriter.write("\n");
       myWriter.close();
       println("Berhasil menuliskan pada " + path);
       return true;
@@ -92,6 +97,7 @@ class FileReadWrite extends Utils {
   }
 
   public static boolean writeFileDeterminan(String path, double[][] mat, double det) {
+    // Menuliskan hasil determinan ke file
     try {
       FileWriter myWriter = new FileWriter(path);
       myWriter.write("Determinan dari matriks :\n");
@@ -101,9 +107,10 @@ class FileReadWrite extends Utils {
         }
         myWriter.write("\n");
       }
-      // Add End Of File (new line)
       myWriter.write("\nadalah ");
       myWriter.write(Double.toString(det));
+      // Add End Of File (new line)
+      myWriter.write("\n");
       myWriter.close();
       println("Berhasil menuliskan pada " + path);
       return true;
@@ -114,6 +121,7 @@ class FileReadWrite extends Utils {
   }
 
   public static boolean writeFileInverse(String path, double[][] mat, double[][] inv) {
+    // Menuliskan hasil inverse ke dalam file
     try {
       FileWriter myWriter = new FileWriter(path);
       myWriter.write("Inverse dari matriks :\n");
@@ -123,7 +131,6 @@ class FileReadWrite extends Utils {
         }
         myWriter.write("\n");
       }
-      // Add End Of File (new line)
       myWriter.write("adalah ");
       for (int i = 0; i < inv.length; i++) {
         for (int j = 0; j < inv[i].length; j++) {
@@ -131,6 +138,8 @@ class FileReadWrite extends Utils {
         }
         myWriter.write("\n");
       }
+      // Add End Of File (new line)
+      myWriter.write("\n");
       myWriter.close();
       println("Berhasil menuliskan pada " + path);
       return true;
@@ -141,6 +150,7 @@ class FileReadWrite extends Utils {
   }
 
   public static boolean writeFileNoInverse(String path, double[][] mat) {
+    // Menuliskan hasil kalkulasi inverse matriks jika matriks tidak memiliki inverse ke dalam file
     try {
       FileWriter myWriter = new FileWriter(path);
       myWriter.write("Matriks :\n");
@@ -150,8 +160,9 @@ class FileReadWrite extends Utils {
         }
         myWriter.write("\n");
       }
-      // Add End Of File (new line)
       myWriter.write("\nTidak memiliki inverse karena determinannya 0");
+      // Add End Of File (new line)
+      myWriter.write("\n");
       myWriter.close();
       println("Berhasil menuliskan pada " + path);
       return true;
@@ -162,6 +173,7 @@ class FileReadWrite extends Utils {
   }
 
   public static boolean writeFileInterpolasi(String path, double[] koef, double nilai, double taksiran) {
+    // Menuliskan hasil kalkulasi interpolasi ke dalam file
     try {
       FileWriter myWriter = new FileWriter(path);
       myWriter.write("Persamaan polinom\ny =");

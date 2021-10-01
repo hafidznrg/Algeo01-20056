@@ -1,5 +1,7 @@
 public class Gauss extends Utils {
     public static double[][] gauss(double[][] matrix) {
+        // Mengembalikan matriks hasil eliminasi Gauss
+
         int row = matrix.length;
         int col = matrix[0].length;
         /* jika ukuran colom <= baris */
@@ -109,6 +111,8 @@ public class Gauss extends Utils {
     }
 
     public static boolean isAllZero(double[][] matrix, int pivotCol){
+        // Mengembalikan true jika suatu kolom matriks bernilai 0 semua
+
         boolean allZero = true;
         for (int i = 0; i < matrix.length; i++){
             if (!isZero(matrix[i][pivotCol])){
@@ -119,6 +123,8 @@ public class Gauss extends Utils {
     }
 
     public static String[] solveSPL(double[][] matrix) {
+        // Mengembalikan array of string berisi hasil kalkulasi SPL dengan metode eliminasi Gauss
+
         int rows = matrix.length;
         int cols = matrix[0].length;
         boolean solvable = true;
@@ -153,6 +159,8 @@ public class Gauss extends Utils {
 
     // rows = cols - 1
     public static String[] solveSPLCase1(double[][] matrix) {
+        // Menyelesaikan SPL kasus 1 (rows = cols -1)
+
         int rows = matrix.length;
         int cols = matrix[0].length;
         String[] result = new String[cols - 1];

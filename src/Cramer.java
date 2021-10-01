@@ -1,5 +1,6 @@
 public class Cramer extends Utils {
     public static String[] cramerRule(double[][] matrix) {
+        // Mengembalikan array of string berisi solusi dari SPL matriks
         // PREKONDISI: DETERMINAN MATRIKS != 0
 
         int row = matrix.length;
@@ -13,8 +14,6 @@ public class Cramer extends Utils {
         for (int i = 0; i < row; i++){
             b[i][0] = matrix[i][col-1];
         }
-        //System.out.println("ini matriks b ");
-        //printMatrix(b);
         //menghitung nilai x[1 ... col-1]
         for (int k=0;k<(col-1);k++) {
             //membuat matrix a sementara untuk setiap colom
@@ -29,15 +28,11 @@ public class Cramer extends Utils {
                     }
                 }
             }
-            //printMatrix(a);
             //nilai x ke berapa
             int xNow = k+1;
             //menghitung nilai x[xNow] = determinan(A[k])/determinan(matrix origin)
-            // Not yet solve
             double x = Cofactor.determinan(a)/Cofactor.determinan(squareMat);
-            //System.out.println(x);
             result[k] = "Nilai X"+xNow+": "+x;
-            // println("Nilai X"+xNow+": "+x);
         }
         return result;
     }
