@@ -12,18 +12,18 @@ public class GaussJordan extends Utils {
         // double[][] matrix = { { 1.00, 2.00, 3.00 }, { 0.00, -3.00, -6.00 }, { 0.00,
         // -6.00, -12.00 },
         // { 4.00, 3.00, 2.00 } };
-        //double[][] matrix = { { 1.00, 2.00, 3.00, 7 }, { 0, 1.00, 4.00, 10 }, { 0, 0, 1.00, 5 } };
+        double[][] matrix = { { 1.00, 2.00, 3.00, 7 }, { 0, 1.00, 4.00, 10 }, { 0, 0, 1.00, 5 } };
         // printMatrix(matrix, 4, 3);
-         Scanner sc = new Scanner(System.in);
-         double[][] matrix = new double[3][5];
-        int rowMat = matrix.length;
-        int colMat = matrix[0].length;
-         for (int i = 0; i < rowMat; i++){
-            for (int j = 0; j < colMat; j++) {
-                matrix[i][j] = sc.nextDouble();
-            }
-         }
-         sc.close();
+//         Scanner sc = new Scanner(System.in);
+//         double[][] matrix = new double[4][4];
+//        int rowMat = matrix.length;
+//        int colMat = matrix[0].length;
+//         for (int i = 0; i < rowMat; i++){
+//            for (int j = 0; j < colMat; j++) {
+//                matrix[i][j] = sc.nextDouble();
+//            }
+//         }
+//         sc.close();
          System.out.println("Matriks eselon barisnya adalah : ");
          double[][] baru = gaussJordan(matrix);
          displayMat(baru);
