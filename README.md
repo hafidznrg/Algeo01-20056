@@ -40,7 +40,7 @@ Here are some things that need to be downloaded and install first:
         java --enable-preview -jar Algeo01-20056.jar
         ```
     
-> Please note that when read and write file, you only need to specify file name without the directory. Default directory is on test folder. if you want to make new file for test case, kindly make it on test folder. Also don't use Java Process Console if you want to read and write file.
+> Please note that when read and write file, you only need to specify file name without the directory, for example: `input_1a.txt`, `input4.txt`, `input_7.txt`. Default directory is on test folder. if you want to make new file for test case, kindly make it on test folder. Also don't use Java Process Console if you want to read and write file.
 
 ## Maintainer
 This program was developed and is maintained by

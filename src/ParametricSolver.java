@@ -34,7 +34,8 @@ class ParametricSolver extends Utils {
   }
 
   public static String[] solve(double[][] mat, boolean fromGauss) {
-    // Mengembalikan array of string berisi hasil kalkulasi SPL dengan bentuk parametrik
+    // Mengembalikan array of string berisi hasil kalkulasi SPL dengan bentuk
+    // parametrik
     String[] result = new String[mat[0].length - 1];
     int rows = mat.length;
     int cols = mat[0].length;
