@@ -15,7 +15,7 @@ public class GaussJordan extends Utils {
         double[][] matrix = { { 1.00, 2.00, 3.00, 7 }, { 0, 1.00, 4.00, 10 }, { 0, 0, 1.00, 5 } };
         // printMatrix(matrix, 4, 3);
 //         Scanner sc = new Scanner(System.in);
-//         double[][] matrix = new double[6][6];
+//         double[][] matrix = new double[3][7];
 //        int rowMat = matrix.length;
 //        int colMat = matrix[0].length;
 //         for (int i = 0; i < rowMat; i++){
@@ -89,10 +89,11 @@ public class GaussJordan extends Utils {
                 //cek apakah kolom bernilai 0
                 boolean allZero = true;
                 for (int i = 0; i < row; i++) {
-                    if (matrix[i][pivotCol] > 1.0e-12) {
+                    if (!isZero(matrix[i][pivotCol])) {
                         allZero = false;
                     }
                 }
+                //jika 0 maka pivot bergeser ke kolom sebelah kanan-nya
                 if (allZero) {
                     pivotCol++;
                 }
@@ -100,7 +101,7 @@ public class GaussJordan extends Utils {
                 /* cek apakah pivot = 0, jika 0 maka swap dengan yang tidak 0 */
                 if (isZero(pivot)) {
                     for (int i = k + 1; i < row; i++) {
-                        if ((Math.abs(matrix[i][pivotCol]) > Math.abs(pivot))) {
+                        if (!isZero(matrix[i][pivotCol])) {
                             for (int j = 0; j < col; j++) {
                                 double temp = matrix[k][j];
                                 matrix[k][j] = matrix[i][j];

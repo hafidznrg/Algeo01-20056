@@ -85,7 +85,7 @@ public class Gauss extends Utils {
                 //cek apakah kolom bernilai 0
                 boolean allZero = true;
                 for (int i = 0; i < row; i++){
-                    if (matrix[i][pivotCol] > 1.0e-12){
+                    if (!isZero(matrix[i][pivotCol])){
                         allZero = false;
                     }
                 }
