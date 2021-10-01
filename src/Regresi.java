@@ -118,6 +118,7 @@ public class Regresi extends Menu {
                 try {
                     print("Masukkan path file yang dituju\n> ");
                     String path = sc.next();
+                    path = "../test/" + path;
                     FileWriter myWriter = new FileWriter(path);
                     myWriter.write("Persamaan regresi linear berganda yang diperoleh\ny = ");
                     myWriter.write(Double.toString(res[0]));
