@@ -1,20 +1,7 @@
 public class Interpolation extends Utils {
-    public static void main(String[] args) {
-        // double[][] matrix = { { 1.00, 2.00, 3.00 }, { 4.00, 5.00, 6.00 }, { 7.00,
-        // 8.00, 9.00 } };
-        // double[][] matrix = { { 1.00, 0.00, 0.00 }, { 0.00, 1.00, 0.00 }, { 0.00,
-        // 0.00, 1.00 } };
-        // double[][] matrix = { { 8.00, 2.0794 }, { 9.00, 2.1972 }, { 9.50, 2.2513 } };
-        double[][] matrix = { { 0.1, 0.003 }, { 0.3, 0.067 }, { 0.5, 0.148 }, { 0.7, 0.248 }, { 0.9, 0.370 },
-                { 1.1, 0.518 }, { 1.3, 0.697 } };
-        // double[][] matrix = { { 1.00, 2.00, 3.00 }, { 0.00, -3.00, -6.00 }, { 0.00,
-        // -6.00, -12.00 }, {4.00, 3.00, 2.00} };
-        double[] koef = polynomial(matrix);
-        double result = estimate(koef, 0.2);
-        println(result);
-    }
-
     public static double estimate(double[] koef, double x) {
+        // Mengembalikan hasil estimasi dari input x
+
         int row = koef.length;
         double res = 0;
 
@@ -26,6 +13,8 @@ public class Interpolation extends Utils {
     }
 
     public static double[] polynomial(double[][] matrix) {
+        // Mengembalikan koefisien dari persamaan polinomial hasil interpolasi
+
         int row = matrix.length;
         int col = matrix.length + 1;
         double[][] matrixPolynom = new double[row][col];

@@ -1,16 +1,6 @@
 public class Cofactor extends Utils{
-
-    public static void main(String[] args) {
-        double[][] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
-        displayMat(matrix);
-        double det = determinan(matrix);
-        println("Determinan : " + det);
-        println("Matriks kofaktornya adalah : ");
-        double[][] baru = cofactorMat(matrix);
-        displayMat(baru);
-    }
-
     public static double[][] calculateOne(double[][] matrix, int row, int col) {
+        // Mengembalikan matriks yang dimensinya lebih kecil satu kali, sesuai dengan aturan ekspansi kofaktor
         int n = matrix.length;
         double[][] newMatrix = new double[n-1][n-1];
         row -= 1;
@@ -38,6 +28,7 @@ public class Cofactor extends Utils{
     }
 
     public static double[][] cofactorMat(double[][] matrix) {
+        // Mengembalikan matriks kofaktor dari matriks input
         int n = matrix.length;
         double[][] newMatrix = new double[n][n];
         double detOne;
@@ -61,6 +52,7 @@ public class Cofactor extends Utils{
     }
 
     public static double determinan(double[][] matrix) {
+        // Menghitung determinan dari matriks input menggunakan metode ekspansi kofaktor
         int n = matrix.length;
         double det = 0;
         double detOne;

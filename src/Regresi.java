@@ -7,20 +7,20 @@ public class Regresi extends Menu {
         int row = matrix.length;
         int col = matrix[0].length;
         double[][] temp = new double[row][col + 2];
+        // Menambahkan angka 1 di kolom pertama sebagai koefisien b0
         for (int i = 0; i < row; i++) {
             temp[i][0] = 1;
         }
+        // Menyalin matrix
         for (int i = 0; i < row; i++) {
             for (int j = 1; j <= col; j++) {
                 temp[i][j] = matrix[i][j - 1];
             }
         }
+        // Menyalin hasil augmented
         for (int i = 0; i < row; i++) {
             temp[i][col + 1] = y[i];
         }
-        // println("Matriks Augmented");
-        // displayMat(temp);
-        // println();
 
         // Membuat matrix SPL dengan menggunakan Normal Estimation Equation
         double[][] spl = new double[col + 1][col + 2];
@@ -36,11 +36,7 @@ public class Regresi extends Menu {
         displayMat(spl);
 
         // Menyelesaikan matrix SPL dengan metode gauss jordan
-//        int newRow = col + 1;
-//        int newCol = col + 2;
         double[][] res = GaussJordan.gaussJordan(spl);
-        // println("Hasil gauss jordan");
-        // displayMat(res);
 
         // Mengambil nilai y saja
         double[] b = new double[col + 1];
@@ -52,13 +48,15 @@ public class Regresi extends Menu {
     }
 
     public static void driverRegresi() {
+        // prosedur driver dari penyelesaian regresi linier berganda
         println("Pilih Masukan\n1. Masukan dari keyboard\n2. Masukan dari file");
         int pilihan, n, m;
         double[][] mat, raw;
         double[] y;
-        pilihan = choose(1,2);
+        pilihan = choose(1, 2);
 
         if (pilihan == 1) {
+            // Masukan dari pengguna
             print("Masukkan banyak peubah x: ");
             n = sc.nextInt();
             print("Masukkan banyak persamaan: ");
@@ -73,8 +71,9 @@ public class Regresi extends Menu {
                 y[i] = sc.nextDouble();
             }
         } else {
+            // Membaca dari file
             raw = inputMatrixFile(false);
-            mat = new double[raw.length][raw[0].length -  1];
+            mat = new double[raw.length][raw[0].length - 1];
             y = new double[raw.length];
             for (int i = 0; i < mat.length; i++) {
                 for (int j = 0; j < mat[i].length; j++) {
@@ -82,7 +81,6 @@ public class Regresi extends Menu {
                 }
                 y[i] = raw[i][raw[0].length - 1];
             }
-
         }
 
         // Menyelesaikan regresi linear berganda
@@ -98,6 +96,7 @@ public class Regresi extends Menu {
                 println(" %f x%d", res[i], i);
             }
         }
+        // Menaksir nilai fungsi
         println("\n\nMenaksir nilai fungsi");
         println("Masukkan %d peubah yang akan ditaksir nilai fungsinya\n", res.length - 1);
         double[] taksir = new double[res.length];
@@ -119,6 +118,7 @@ public class Regresi extends Menu {
                 try {
                     print("Masukkan path file yang dituju\n> ");
                     String path = sc.next();
+                    path = "../test/" + path;
                     FileWriter myWriter = new FileWriter(path);
                     myWriter.write("Persamaan regresi linear berganda yang diperoleh\ny = ");
                     myWriter.write(Double.toString(res[0]));
@@ -130,9 +130,9 @@ public class Regresi extends Menu {
                         myWriter.write("x");
                         myWriter.write(Integer.toString(i));
                     }
-                    // myWriter.write("\n");
                     myWriter.write("\nNilai taksirannya adalah ");
                     myWriter.write(Double.toString(result));
+                    myWriter.write("\n");
                     myWriter.close();
                     println("Berhasil menuliskan pada " + path);
                     success = true;
@@ -141,10 +141,5 @@ public class Regresi extends Menu {
                 }
             }
         }
-    }
-
-
-    public static void main(String[] args) {
-        driverRegresi();
     }
 }

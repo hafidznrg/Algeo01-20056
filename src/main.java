@@ -4,7 +4,6 @@ class Main extends Menu {
     int choice;
     double det;
     double[][] mat;
-    // double[][] res;
 
     running = true;
     while (running) {
@@ -12,46 +11,36 @@ class Main extends Menu {
       displayMainMenu();
       choice = choose(1, 6);
       switch (choice) {
-        case 1:
+        case 1: // Sistem Persamaan Linear
           mustSquare = false;
           mat = createMatrix(mustSquare);
-          // displayMat(mat);
+          String[] result = new String[mat[0].length];
+          double[][] resSPLMat;
           double detM = 0;
           if (mat.length == mat[0].length - 1) {
             detM = Cofactor.determinan(mat);
           }
           while (true) {
-            if (choice == 1 || choice == 2 || !isZero(detM)) {
-              break;
-            } else {
-              println("Tidak bisa menyelesaikan SPL dengan cara ini.\nSilakan menggunakan cara lain");
-              displayMenuSPL();
-              choice = choose(1, 4);
-            }
-          }
-
-          // CALL SPL CLASS
-          String[] result = new String[mat[0].length];
-          double[][] resSPLMat;
-          det = Cofactor.determinan(mat);
-          while (true) {
             displayMenuSPL();
             choice = choose(1, 4);
-            if (choice == 1 || choice == 2 || !isZero(det))
+            if (choice == 1 || choice == 2 || !isZero(detM))
               break;
             else {
               println("Tidak dapat diselesaikan dengan metode " + ((choice == 3) ? "matriks balikan" : "cramer"));
               println("Silakan pilih metode lain\n");
             }
           }
+          // CALL SPL CLASS
           switch (choice) {
             case 1: // eliminasi Gauss
               resSPLMat = Gauss.gauss(mat);
+              displayMat(resSPLMat);
               result = Gauss.solveSPL(resSPLMat);
               break;
 
             case 2: // eliminasi Gauss-Jordan
               resSPLMat = GaussJordan.gaussJordan(mat);
+              displayMat(resSPLMat);
               result = GaussJordan.solveSPL(resSPLMat);
               break;
 
@@ -63,7 +52,6 @@ class Main extends Menu {
               result = Cramer.cramerRule(mat);
               break;
           }
-          // res = SPL.calc(mat);
           // Check result
           displayResults(result);
           displayMenuOutput();
@@ -75,10 +63,9 @@ class Main extends Menu {
               success = FileReadWrite.writeFileSPL("../test/" + path, result);
             }
           }
-          // displayMat(mat);
           break;
 
-        case 2:
+        case 2:// Kalkulasi Determinan
           displayMenuDet();
           choice = choose(1, 2);
           mustSquare = true;
@@ -104,7 +91,7 @@ class Main extends Menu {
           }
           break;
 
-        case 3:
+        case 3: // Matriks Balikan
           displayMenuInverse();
           choice = choose(1, 2);
           mustSquare = true;
@@ -146,7 +133,7 @@ class Main extends Menu {
           }
           break;
 
-        case 4:
+        case 4:// Interpolasi Polinomial
           mustSquare = false;
           mat = createMatrix(mustSquare);
           // CALL INTERPOLASI POLINOM
@@ -167,11 +154,11 @@ class Main extends Menu {
           }
           break;
 
-        case 5:
+        case 5: // Multi linear regresi
           Regresi.driverRegresi();
           break;
 
-        default:
+        default: // Keluar
           println("Thank youu ^_^");
           running = false;
           break;
